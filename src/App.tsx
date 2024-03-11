@@ -12,8 +12,9 @@ const useStyles = tss.create({
     maxWidth: '100vw !important'
   },
   content: {
-    backgroundColor: 'white',
-    margin: '20px 0px',
+    backgroundColor: '#999',
+    paddingTop: '15vh',
+    border: '2px solid black'
   }
 })
 
@@ -24,9 +25,11 @@ function App() {
     <Container className={classes.app}>
       <Router>
         <Header />
-        <Routes>
-          <Route path='/' element={<Content />} />
-        </Routes>
+        <Container className={classes.content}>
+          <Routes>
+              <Route path='/' element={<Content />} />
+          </Routes>
+        </ Container>
         <Footer />
       </Router>
     </Container>

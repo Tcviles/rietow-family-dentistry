@@ -4,9 +4,10 @@ import { tss } from 'tss-react'
 
 const useStyles = tss.create({
     contentContainer: {
-        border: '2px solid black',
         height: '6000px',
-        paddingTop: '15vh'
+        background: 'white',
+        padding: '20px',
+        borderRadius: '10px'
     }
 })
 

@@ -5,33 +5,26 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 const useStyles = tss.create({
     headerContainer: {
-        display: 'flex',
-        height: '15vh',
+        height: '14vh',
         width: '100vw !important',
         position: 'fixed',
-        background: 'white',
-        justifyContent: 'space-between'
+        background: 'white'
     },
     servingYou: {
         fontFamily: 'Caveat, cursive',
         letterSpacing: '5px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         background: '#999',
         color: 'white',
         height: '3vh',
-    },
-    logo: {
-        height: 'auto',
-        maxHeight: '15vh',
+        textAlign: 'center'
     },
     imageContainer: {
         maxWidth: '100%',
         padding: '5px',
+        margin: '0 20px',
         '& img': {
             maxWidth: '100%',
-            maxHeight: '13vh',
+            maxHeight: '10vh',
             height: 'auto',
         },
     },
@@ -59,7 +52,10 @@ const useStyles = tss.create({
         },
     },
     contact: {
-        padding: '5px'
+        padding: '5px',
+        "@media (max-width: 750px)": {
+            display: "none",
+        },
     },
     border: {
         border: '2px solid black'
@@ -92,42 +88,44 @@ function Header() {
     return (
         <Grid container className={classes.headerContainer}>
             <Grid item xs={12} className={classes.servingYou}>Serving your family these fingers since 1993</Grid>
-            <Grid container>
-                <Grid item xs={1} className={classes.menuContainer}>
-                    <IconButton
-                        size="large"
-                        onClick={handleOpenNavMenu}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Menu
-                        anchorEl={anchorElNav}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        open={Boolean(anchorElNav)}
-                        onClose={() => handleCloseNavMenu()}
-                    >
-                        {pages.map((page) => (
-                            <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                                <Button
-                                    key={page.title}
-                                    onClick={handleCloseNavMenu}
-                                    className={classes.linkButtons}
-                                >
-                                    {page.title}
-                                </Button>
-                            </MenuItem>
-                        ))}
-                    </Menu>
-                </Grid>
-                <Grid item xs={2} className={classes.imageContainer}>
-                    <img src={require('../media/Rietow DDS JPG.jpg')} alt='' />
+            <Grid container justifyContent='space-between' alignContent='center'>
+                <Grid container xs={12} sm={8} justifyContent='space-between' alignContent='center'>
+                    <Grid item xs={4} md={5} className={classes.menuContainer}>
+                        <IconButton
+                            size="large"
+                            onClick={handleOpenNavMenu}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={() => handleCloseNavMenu()}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                                    <Button
+                                        key={page.title}
+                                        onClick={handleCloseNavMenu}
+                                        className={classes.linkButtons}
+                                    >
+                                        {page.title}
+                                    </Button>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Grid>
+                    <Grid item xs={6} className={classes.imageContainer}>
+                        <img src={require('../media/Rietow DDS JPG.jpg')} alt='' />
+                    </Grid>
                 </Grid>
                 <Grid container xs={6} className={classes.links}>
                     {pages.map((page) => (
@@ -142,7 +140,7 @@ function Header() {
                         </Grid>
                     ))}
                 </Grid>
-                <Grid item xs={2} className={classes.contact}>
+                <Grid item xs={2} sm={4} className={classes.contact}>
                     Item
                 </Grid>
             </Grid>
