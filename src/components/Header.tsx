@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Menu, MenuItem, Button, IconButton } from '@mui/material';
 import { tss } from 'tss-react'
 import MenuIcon from '@mui/icons-material/Menu'
+import Contact from './Contact';
 
 const useStyles = tss.create({
     headerContainer: {
@@ -141,7 +142,7 @@ function Header() {
                     ))}
                 </Grid>
                 <Grid item xs={2} sm={4} className={classes.contact}>
-                    Item
+                    <Contact />
                 </Grid>
             </Grid>
         </Grid>
