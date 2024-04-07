@@ -12,9 +12,7 @@ const useStyles = tss.create({
     maxWidth: '100vw !important'
   },
   content: {
-    backgroundColor: '#999',
     paddingTop: '15vh',
-    border: '2px solid black'
   }
 })
 

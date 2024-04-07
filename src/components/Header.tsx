@@ -52,13 +52,20 @@ const useStyles = tss.create({
         },
     },
     contact: {
-        padding: '5px',
+        padding: '15px',
+        height: '100%',
         "@media (max-width: 750px)": {
             display: "none",
         },
     },
-    border: {
-        border: '2px solid black'
+    innerContact: {
+        padding: '5px',
+        border: '2px solid #999',
+        borderRadius: '5px',
+        height: '100%',
+        "@media (max-width: 750px)": {
+            display: "none",
+        },
     }
 })
 
@@ -141,7 +148,8 @@ function Header() {
                     ))}
                 </Grid>
                 <Grid item xs={2} sm={4} className={classes.contact}>
-                    Item
+                    <Grid item className={classes.innerContact}>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
