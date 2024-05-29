@@ -1,9 +1,8 @@
-import React from 'react';
-import { Container, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { tss } from 'tss-react'
 
 const useStyles = tss.create({
-    FooterContainer: {
+    ContactContainer: {
         background: '#DDD',
         border: '2px solid #999',
         borderRadius: '5px',
@@ -11,14 +10,14 @@ const useStyles = tss.create({
     }
 })
 
-function Footer() {
+function Contact() {
     const { classes } = useStyles()
 
     return (
-        <Grid container className={classes.FooterContainer}>
-            Footer
+        <Grid container className={classes.ContactContainer}>
+            Contact
         </Grid>
     );
 }
 
-export default Footer;
+export default Contact;

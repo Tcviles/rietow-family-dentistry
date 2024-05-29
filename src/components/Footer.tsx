@@ -4,6 +4,7 @@ import { tss } from 'tss-react'
 
 const useStyles = tss.create({
     FooterContainer: {
+        display: 'none',
         border: '2px solid black'
     }
 })
