@@ -1,36 +1,45 @@
-import React from 'react';
-import { Container } from '@mui/material';
+import React, { useState } from 'react';
+import { Grid } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { tss } from 'tss-react'
 import Header from './components/Header';
 import Content from './components/Content';
 import Footer from './components/Footer';
+import SlideoutMenu from './components/SlideoutMenu';
 
 const useStyles = tss.create({
   app: {
-    padding: '0px !important',
-    maxWidth: '100vw !important'
+    maxWidth: '100vw !important',
+    justifyContent: 'center'
   },
   content: {
-    paddingTop: '15vh',
+    paddingTop: '16vh'
   }
 })
 
 function App() {
   const { classes } = useStyles()
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    console.log('toggledMenu')
+  };
+
 
   return (
-    <Container className={classes.app}>
+    <Grid container className={classes.app}>
       <Router>
-        <Header />
-        <Container className={classes.content}>
+        <Header toggleMenu={toggleMenu} />
+        <Grid item xs={12} md={10} className={classes.content}>
+        <SlideoutMenu isOpen={menuOpen} onClose={toggleMenu} />
           <Routes>
-              <Route path='/' element={<Content />} />
+            <Route path='/' element={<Content />} />
           </Routes>
-        </ Container>
+        </ Grid>
         <Footer />
       </Router>
-    </Container>
+    </Grid>
   );
 }
 
