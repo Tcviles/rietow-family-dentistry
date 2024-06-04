@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Grid } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import { tss } from 'tss-react'
 import Contact from './Contact';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const useStyles = tss.create({
     headerContainer: {
@@ -43,19 +44,24 @@ const useStyles = tss.create({
         },
     },
     containers: {
+        display: 'flex',
         width: '100%',
-        minHeight: '80%'
+        minHeight: '80%',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
-function Header({toggleMenu = ()=>{}}) {
+function Header({ toggleMenu = () => { } }) {
     const { classes } = useStyles();
 
     return (
         <Grid className={classes.headerContainer}>
             <Grid container md={10} className={classes.headerContent}>
                 <Grid item xs={3} className={classes.buttonContainer}>
-                    <Button onClick={toggleMenu}>Menu</Button>
+                    <IconButton size="large" onClick={toggleMenu}>
+                        <MenuIcon /> <Typography>Menu</Typography>
+                    </IconButton>
                 </Grid>
                 <Grid item xs={6} className={classes.imageContainer}>
                     <img src={require('../media/Rietow DDS JPG.jpg')} alt='' />
