@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { tss } from 'tss-react'
 import Header from './components/Header';
 import Content from './components/Content';
+import Services from './components/Services';
 import Footer from './components/Footer';
 import SlideoutMenu from './components/SlideoutMenu';
 
@@ -35,6 +36,7 @@ function App() {
         <SlideoutMenu isOpen={menuOpen} onClose={toggleMenu} />
           <Routes>
             <Route path='/' element={<Content />} />
+            <Route path='/services' element={<Services />} />
           </Routes>
         </ Grid>
         <Footer />
