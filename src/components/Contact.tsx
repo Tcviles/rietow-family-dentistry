@@ -1,5 +1,5 @@
 import { Email, Phone } from '@mui/icons-material';
-import { Button, Grid, IconButton, Typography } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { tss } from 'tss-react';
 
 const useStyles = tss.create({
@@ -26,7 +26,6 @@ const useStyles = tss.create({
         height: '60%',
         '& button': {
             textDecoration: 'none',
-            color: 'white',
             width: '100%',
             fontSize: '14px'
         }
@@ -39,13 +38,13 @@ function Contact() {
     return (
         <Grid container className={classes.contactContainer}>
             <Grid item xs={5.8} className={classes.textContainer}>
-                <IconButton><Email/></IconButton>
+                <Button href='mailTo:Tcv720@gmail.com' style={{ color: 'white' }}><Email /></Button>
             </Grid>
             <Grid item xs={5.8} className={classes.textContainer}>
-                <IconButton><Phone/></IconButton>
+                <Button href='tel:123-456-7890' style={{ color: 'white' }}><Phone /></Button>
             </Grid>
             <Grid item xs={12} className={classes.textContainer}>
-                <IconButton>Patient Forms</IconButton>
+                <Button href='https://gillumdentistry.com/wp-content/uploads/2020/06/New-Patient-Forms_COVID.pdf' target='_blank' style={{ color: 'white' }}>Patient Forms</Button>
             </Grid>
         </Grid>
     );

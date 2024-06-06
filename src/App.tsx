@@ -7,6 +7,7 @@ import Content from './components/Content';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import SlideoutMenu from './components/SlideoutMenu';
+import ContactPage from './components/ ContactPage';
 
 const useStyles = tss.create({
   app: {
@@ -37,6 +38,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Content />} />
             <Route path='/services' element={<Services />} />
+            <Route path='/contact' element={<ContactPage />} />
           </Routes>
         </ Grid>
         <Footer />
