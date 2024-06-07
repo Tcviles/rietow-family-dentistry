@@ -17,7 +17,7 @@ const useStyles = tss.create({
         '& img': {
             width: '100%',
             height: 'auto',
-            aspectRatio: 16 / 9
+            aspectRatio: 4 / 3
         },
     },
     title: {
