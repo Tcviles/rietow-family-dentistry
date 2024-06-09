@@ -40,7 +40,7 @@ function Services() {
                 </Grid>
 
                 <Grid item xs={7} className={classes.imageContainer}>
-                    <img src={require('../media/Rietow Office.png')} alt='' />
+                    <img src={require('../media/OfficeShot.png')} alt='' />
                 </Grid>
             </Grid>
         </Grid>

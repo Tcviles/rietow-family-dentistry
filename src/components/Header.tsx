@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { tss } from 'tss-react'
 import Contact from './Contact';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -60,11 +61,13 @@ function Header({ toggleMenu = () => { } }) {
             <Grid container md={10} className={classes.headerContent}>
                 <Grid item xs={3} className={classes.buttonContainer}>
                     <IconButton size="large" onClick={toggleMenu}>
-                        <MenuIcon /> <Typography>Menu</Typography>
+                        <MenuIcon /> <Typography fontSize={'20px'}>Menu</Typography>
                     </IconButton>
                 </Grid>
                 <Grid item xs={6} className={classes.imageContainer}>
+                    <Link to="/">
                     <img src={require('../media/Rietow DDS JPG.jpg')} alt='' />
+                    </Link>
                 </Grid>
                 <Grid item xs={3} className={classes.containers}>
                     <Contact />

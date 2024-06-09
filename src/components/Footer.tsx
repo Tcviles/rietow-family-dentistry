@@ -9,7 +9,6 @@ const useStyles = tss.create({
         backgroundColor: 'black',
         minHeight: '70px',
         width: '100%',
-        marginTop: '10px'
     },
     footerText: {
         color: '#9c9c9c',
