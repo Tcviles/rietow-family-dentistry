@@ -17,20 +17,18 @@ const useStyles = tss.create({
         padding: '20px',
         marginTop: '16px',
         backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover', // Ensure the image covers the container
-        backgroundPosition: 'center', // Center the image
-        backgroundRepeat: 'no-repeat' // Prevent the image from repeating
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
     },
     footerContent: {
         display: 'flex',
         flexDirection: 'column',
+        marginTop:'10px',
         '& img': {
             width: '100%',
             aspectRatio: 15 / 9
         },
-    },
-    title: {
-        marginBottom: '20px'
     }
 });
 
@@ -39,13 +37,13 @@ function TopFooter() {
 
     return (
         <Grid container className={classes.topFooterContainer}>
-            <Grid item xs={3.8}>
+            <Grid item xs={12} sm={5.8} md={3.8} marginTop='10px'>
                 <Hours />
             </Grid>
-            <Grid item xs={3.8} height='100%' alignContent='center'>
+            <Grid item xs={12} sm={5.8} md={3.8} marginTop='10px'>
                 <MeetDrJoe />
             </Grid>
-            <Grid item xs={3.8} className={classes.footerContent}>
+            <Grid item xs={12} md={3.8} className={classes.footerContent}>
                 <OfficeInfo />
                 <Map />
             </Grid>

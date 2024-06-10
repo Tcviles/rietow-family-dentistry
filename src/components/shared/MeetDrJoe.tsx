@@ -13,7 +13,7 @@ const useStyles = tss.create({
     padding: '12px',
     textAlign: 'center',
     width: '100%',
-    aspectRatio: 3 / 4
+    height: '100%'
   },
   headShot: {
     display: 'flex',

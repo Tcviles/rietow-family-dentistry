@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { tss } from 'tss-react'
+import { tss } from 'tss-react';
 import Contact from './Contact';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -50,6 +50,11 @@ const useStyles = tss.create({
         minHeight: '80%',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    hideMenuText: {
+        '@media (max-width: 600px)': {
+            display: 'none'
+        }
     }
 });
 
@@ -61,7 +66,7 @@ function Header({ toggleMenu = () => { } }) {
             <Grid container md={10} className={classes.headerContent}>
                 <Grid item xs={3} className={classes.buttonContainer}>
                     <IconButton size="large" onClick={toggleMenu}>
-                        <MenuIcon /> <Typography fontSize={'20px'}>Menu</Typography>
+                        <MenuIcon /> <Typography fontSize={'20px'} className={classes.hideMenuText}>Menu</Typography>
                     </IconButton>
                 </Grid>
                 <Grid item xs={6} className={classes.imageContainer}>

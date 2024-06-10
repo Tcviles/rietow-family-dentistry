@@ -16,6 +16,9 @@ const useStyles = tss.create({
     justifyContent: 'center'
   },
   content: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
     paddingTop: '16vh'
   }
 })
@@ -31,19 +34,23 @@ function App() {
 
 
   return (
-    <Grid container className={classes.app}>
+    <Grid className={classes.app}>
       <Router>
         <Header toggleMenu={toggleMenu} />
-        <Grid item xs={12} md={10} className={classes.content}>
-        <SlideoutMenu isOpen={menuOpen} onClose={toggleMenu} />
-          <Routes>
-            <Route path='/' element={<Content />} />
-            <Route path='/services' element={<Services />} />
-            <Route path='/contact' element={<ContactPage />} />
-          </Routes>
+        <Grid container className={classes.content}>
+          <Grid item xs={12} md={10}>
+            <SlideoutMenu isOpen={menuOpen} onClose={toggleMenu} />
+            <Routes>
+              <Route path='/' element={<Content />} />
+              <Route path='/services' element={<Services />} />
+              <Route path='/contact' element={<ContactPage />} />
+            </Routes>
+          </Grid>
+          <Grid item xs={12}>
+            <TopFooter />
+            <Footer />
+          </Grid>
         </ Grid>
-        <TopFooter/>
-        <Footer />
       </Router>
     </Grid>
   );

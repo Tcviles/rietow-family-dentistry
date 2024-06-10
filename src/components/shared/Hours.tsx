@@ -12,8 +12,7 @@ const useStyles = tss.create({
     borderRadius: '10px',
     padding: '12px',
     textAlign: 'center',
-    width: '100%',
-    aspectRatio: 3 / 4
+    height: '100%'
   },
   officePic: {
     display: 'flex',
@@ -21,8 +20,8 @@ const useStyles = tss.create({
     alignItems: 'center',
     width: '100%',
     "& img": {
-      width: '70%',
-      aspectRatio: 15 / 9,
+      width: '80%',
+      aspectRatio: 4 / 3,
       borderRadius: '5%'
     }
   }
