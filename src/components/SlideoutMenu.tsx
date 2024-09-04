@@ -15,7 +15,7 @@ const SlideoutMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => voi
             <ListItem button component={Link} to="/services" onClick={onClose}>
               <ListItemText primary="Our Services" />
             </ListItem>
-            <ListItem button component={Link} to="/about" onClick={onClose}>
+            <ListItem button component={Link} to="/team" onClick={onClose}>
               <ListItemText primary="Meet The Team" />
             </ListItem>
             <ListItem button component={Link} to="/contact" onClick={onClose}>

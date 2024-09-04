@@ -10,6 +10,7 @@ import SlideoutMenu from './components/SlideoutMenu';
 import ContactPage from './components/ ContactPage';
 import TopFooter from './components/TopFooter';
 import Insurance from './components/Insurance';
+import MeetTheTeam from './components/MeetTheTeam';
 
 const useStyles = tss.create({
   app: {
@@ -45,6 +46,7 @@ function App() {
               <Route path='/' element={<Content />} />
               <Route path='/services' element={<Services />} />
               <Route path='/contact' element={<ContactPage />} />
+              <Route path='/team' element={<MeetTheTeam />} />
               <Route path='/insurance' element={<Insurance />} />
             </Routes>
           </Grid>
