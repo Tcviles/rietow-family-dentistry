@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { tss } from 'tss-react';
-import Contact from './Contact';
+import Contact from '../Contact';
 
 const useStyles = tss.create({
     headerContainer: {
@@ -68,7 +68,7 @@ export default function Navbar() {
             <Grid container md={10} className={classes.headerContent}>
                 <Grid item xs={3} className={classes.imageContainer}>
                     <Link to="/">
-                        <img src={require('../media/Rietow DDS JPG.jpg')} alt='Logo' />
+                        <img src={require('../../media/NavbarLogo.jpg')} alt='Logo' />
                     </Link>
                 </Grid>
 

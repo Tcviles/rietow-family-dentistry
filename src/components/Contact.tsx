@@ -7,18 +7,18 @@ import ContactButton from './Navbar/ContactButton';
 const useStyles = tss.create({
     contactContainer: {
         display: 'flex',
-        justifyContent: 'space-between',
         alignContent: 'center',
         background: content.colors.lightGrey,
         border: '2px solid #DDD',
         borderRadius: '10px',
-        height: '100%',
-        padding: '12px'
+        height: '70%',
+        padding: 4
     },
     row: {
         display: 'flex',
         justifyContent: 'space-between',
-        padding: 2
+        padding: 2,
+        gap: 6
     }
 });
 
@@ -28,10 +28,10 @@ function Contact() {
     return (
         <Grid container className={classes.contactContainer}>
             <Grid xs={12} className={classes.row}>
-                <Grid item xs={5.8}>
+                <Grid item xs={6}>
                     <ContactButton link="/contact" text="Contact Us"/>
                 </Grid>
-                <Grid item xs={5.8}>
+                <Grid item xs={6}>
                     <ContactButton link="tel:317-888-7576" text="317-888-7576"/>
                 </Grid>
             </Grid>

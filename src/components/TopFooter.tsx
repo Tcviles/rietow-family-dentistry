@@ -6,20 +6,13 @@ import Map from './shared/Map';
 import Hours from './shared/Hours';
 import OfficeInfo from './shared/OfficeInfo';
 
-// Use require to get the image URL
-const backgroundImage = require('../media/Rietow DDS JPG.jpg');
-
 const useStyles = tss.create({
     topFooterContainer: {
         display: 'flex',
         justifyContent: 'space-around',
         background: 'white',
         padding: '20px',
-        marginTop: '16px',
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        marginTop: '16px'
     },
     footerContent: {
         display: 'flex',

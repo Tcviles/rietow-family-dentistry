@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { tss } from 'tss-react'
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import ContactPage from './components/ ContactPage';

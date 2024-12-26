@@ -13,13 +13,10 @@ const useStyles = tss.create({
         borderRadius: '10px',
         padding: '12px',
         marginBottom: '10px',
-        height: '100%'
+        gap: 10
     },
     imageContainer: {
-        justifyContent: 'center',
-        alignSelf: 'center',
         '& img': {
-            width: '100%',
             aspectRatio: 16 / 5,
             borderRadius: '20px'
         },
@@ -44,7 +41,7 @@ function OfficeInfo() {
                 </Grid>
                 <Grid item md={5}>
                     <Typography variant="body1">Phone:</Typography>
-                    <Typography variant="body2">1-317-888-7576</Typography>
+                    <Typography variant="body2">317-888-7576</Typography>
                 </Grid>
             </Grid>
         </Grid>
