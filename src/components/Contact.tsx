@@ -1,47 +1,74 @@
-import { Email, Phone, Assignment, Map, AttachMoney } from '@mui/icons-material';
-import { Button, Grid, Typography } from '@mui/material';
-import { tss } from 'tss-react';
+import { Box, Button, Stack } from '@mui/material';
 import content from '../content';
-import ContactButton from './Navbar/ContactButton';
-
-const useStyles = tss.create({
-    contactContainer: {
-        display: 'flex',
-        alignContent: 'center',
-        background: content.colors.lightGrey,
-        border: '2px solid #DDD',
-        borderRadius: '10px',
-        height: '70%',
-        padding: 4
-    },
-    row: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: 2,
-        gap: 6
-    }
-});
 
 function Contact() {
-    const { classes } = useStyles();
+  const { contactPage, phone, phoneLink, payLink } = content.contactInfo;
 
-    return (
-        <Grid container className={classes.contactContainer}>
-            <Grid xs={12} className={classes.row}>
-                <Grid item xs={6}>
-                    <ContactButton link="/contact" text="Contact Us"/>
-                </Grid>
-                <Grid item xs={6}>
-                    <ContactButton link="tel:317-888-7576" text="317-888-7576"/>
-                </Grid>
-            </Grid>
-            <Grid xs={12} className={classes.row}>
-                <Grid item xs={5.8} sm={12}>
-                    <ContactButton link="/pay" text="Pay Now" />
-                </Grid>
-            </Grid>
-        </Grid>
-    );
+  return (
+    <Box
+    sx={{
+        backgroundColor: '#DDD',
+        borderRadius: '10px',
+        padding: 1.5,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+        width: '100%',        // 👈 fills whatever space parent provides
+        maxWidth: '100%',     // 👈 prevents overflow if applied elsewhere
+      }}
+    >
+      {/* Top row: Contact + Phone side-by-side */}
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Button
+          href={contactPage}
+          fullWidth
+          variant="contained"
+          sx={{
+            backgroundColor: '#999',
+            color: 'white',
+            textTransform: 'none',
+            fontSize: '12px',
+            borderRadius: '8px',
+            '&:hover': { backgroundColor: '#777' },
+          }}
+        >
+          Contact Us
+        </Button>
+        <Button
+          href={phoneLink}
+          fullWidth
+          variant="contained"
+          sx={{
+            backgroundColor: '#999',
+            color: 'white',
+            textTransform: 'none',
+            fontSize: '12px',
+            borderRadius: '8px',
+            '&:hover': { backgroundColor: '#777' },
+          }}
+        >
+          {phone}
+        </Button>
+      </Box>
+
+      {/* Bottom: Pay Now full-width */}
+      <Button
+        href={payLink}
+        fullWidth
+        variant="contained"
+        sx={{
+          backgroundColor: '#999',
+          color: 'white',
+          textTransform: 'none',
+          fontSize: '12px',
+          borderRadius: '8px',
+          '&:hover': { backgroundColor: '#777' },
+        }}
+      >
+        Pay Now
+      </Button>
+    </Box>
+  );
 }
 
 export default Contact;

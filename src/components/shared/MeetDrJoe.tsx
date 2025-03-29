@@ -1,68 +1,71 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { tss } from 'tss-react';
-
-const useStyles = tss.create({
-  contentContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    background: '#DDD',
-    border: '2px solid #DDD',
-    borderRadius: '10px',
-    padding: '12px',
-    textAlign: 'center',
-    width: '100%',
-    height: '100%'
-  },
-  headShot: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    "& img": {
-      width: '150px',
-      aspectRatio: 1 / 1,
-      borderRadius: '50%',
-      objectFit: 'cover'
-    }
-  },
-  textContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignContent: 'center',
-    background: '#999',
-    border: '2px solid #DDD',
-    borderRadius: '10px',
-    padding: '2px',
-    marginTop: '2px',
-    marginBottom: '2px',
-    '& button': {
-      textDecoration: 'none',
-      color: 'white',
-      width: '100%',
-      fontSize: '10px'
-    }
-  }
-});
+import { Grid, Button, Typography } from '@mui/material';
+import content from '../../content';
 
 function MeetDrJoe() {
-  const { classes } = useStyles();
+  const { name, clinic, quote, teamPageLink, headshot } = content.team.drJoe;
 
   return (
-    <Grid container className={classes.contentContainer}>
-      <Grid item className={classes.headShot}>
-        <img src={require("../../media/JoeHeadshot1x1.png")} alt='Dr. Joe Rietow' />
+    <Grid
+      container
+      direction="column"
+      justifyContent="space-around"
+      alignItems="center"
+      sx={{
+        backgroundColor: '#DDD',
+        border: '2px solid #DDD',
+        borderRadius: '10px',
+        padding: 2,
+        textAlign: 'center',
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      {/* Headshot */}
+      <Grid item sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: 2 }}>
+        <img
+          src={headshot}
+          alt={name}
+          style={{
+            width: '150px',
+            aspectRatio: '1 / 1',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
+        />
       </Grid>
+
+      {/* Name & Clinic */}
       <Grid item>
-        <Typography variant="h5">Dr. Joe Rietow, DDS</Typography>
-        <Typography variant="body1">Rietow Family Dentistry</Typography>
+        <Typography variant="h5">{name}</Typography>
+        <Typography variant="body1" gutterBottom>
+          {clinic}
+        </Typography>
       </Grid>
+
+      {/* Quote */}
       <Grid item>
-        <Typography variant="body2">"As my patient, you can expect that I will help you achieve the smile that you have always wanted while using the latest technology available in dentistry."</Typography>
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          {quote}
+        </Typography>
       </Grid>
-      <Grid item className={classes.textContainer}>
-        <Button href="/" style={{ color: 'white' }}>
+
+      {/* CTA Button */}
+      <Grid item sx={{ width: '100%' }}>
+        <Button
+          href={teamPageLink}
+          sx={{
+            backgroundColor: '#999',
+            color: 'white',
+            border: '2px solid #DDD',
+            borderRadius: '10px',
+            fontSize: '14px',
+            px: 2,
+            py: 1,
+            '&:hover': {
+              backgroundColor: '#777',
+            },
+          }}
+        >
           Meet the team
         </Button>
       </Grid>

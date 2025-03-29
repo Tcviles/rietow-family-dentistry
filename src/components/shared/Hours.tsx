@@ -1,51 +1,48 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { tss } from 'tss-react';
-
-const useStyles = tss.create({
-  contentContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    background: '#DDD',
-    border: '2px solid #DDD',
-    borderRadius: '10px',
-    padding: '12px',
-    textAlign: 'center',
-    height: '100%'
-  },
-  officePic: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    "& img": {
-      width: '80%',
-      aspectRatio: 4 / 3,
-      borderRadius: '5%'
-    }
-  }
-});
+import { Grid, Typography, Box } from '@mui/material';
+import content from '../../content';
 
 function Hours() {
-  const { classes } = useStyles();
-
   return (
-    <Grid container className={classes.contentContainer}>
-      <Grid item className={classes.officePic}>
-        <img src={require("../../media/OfficeShot.png")} alt='Our Office' />
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: '#DDD',
+        border: '2px solid #DDD',
+        borderRadius: '10px',
+        padding: 2,
+        textAlign: 'center',
+        height: '100%',
+      }}
+    >
+      <Grid
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          mb: 2,
+          '& img': {
+            width: '80%',
+            aspectRatio: '4 / 3',
+            borderRadius: '5%',
+          },
+        }}
+      >
+        <img src={require("../../media/OfficeShot.png")} alt="Our Office" />
       </Grid>
-      <Grid item>
-        <Typography variant="h5">Office Hours</Typography>
-        <br/>
-        <Typography variant="body1">Mon: 8AM - 5PM</Typography>
-        <Typography variant="body1">Tues: 8AM - 5PM</Typography>
-        <Typography variant="body1">Wed: 8AM - 5PM</Typography>
-        <Typography variant="body1">Thurs: 8AM - 5PM</Typography>
-        <Typography variant="body1">Fri: CLOSED</Typography>
-        <Typography variant="body1">Sat: CLOSED</Typography>
-        <Typography variant="body1">Sun: CLOSED</Typography>
-      </Grid>
+
+      <Typography variant="h5" gutterBottom>
+        Office Hours
+      </Typography>
+
+      {content.officeHours.map(({ day, hours }) => (
+        <Typography key={day} variant="body1">
+          {day}: {hours}
+        </Typography>
+      ))}
     </Grid>
   );
 }

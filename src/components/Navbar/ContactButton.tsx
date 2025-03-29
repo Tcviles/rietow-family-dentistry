@@ -1,27 +1,29 @@
 import { Button, Typography } from "@mui/material";
-import { tss } from "tss-react";
 
-const useStyles = tss.create({
-  textContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignContent: 'center',
-    background: '#999',
-    borderRadius: '10px',
-    color: 'white'
-  },
-  buttonText: {
-    fontSize: '14px',
-    textTransform: 'none'
-  }
-});
+type ContactButtonProps = {
+  link: string;
+  text: string;
+};
 
-export default function ContactButton({ link, text }: { link: string, text: string }) {
-  const { classes } = useStyles();
-
+export default function ContactButton({ link, text }: ContactButtonProps) {
   return (
-    <Button href={link} className={classes.textContainer}>
-      <Typography className={classes.buttonText}>{text}</Typography>
+    <Button
+      href={link}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#999',
+        borderRadius: '10px',
+        color: 'white',
+        textTransform: 'none',
+        px: 2,
+        '&:hover': {
+          backgroundColor: '#777',
+        }
+      }}
+    >
+      <Typography sx={{ fontSize: 12 }}>{text}</Typography>
     </Button>
   );
 }

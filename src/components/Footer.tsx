@@ -1,48 +1,48 @@
-import { Box, Typography } from '@mui/material';
-import { tss } from 'tss-react'
-
-const useStyles = tss.create({
-    footer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: 'black',
-        minHeight: '70px',
-        width: '100%',
-    },
-    footerText: {
-        color: '#9c9c9c',
-        padding: '20px 25px'
-    },
-    textLeft: {
-        fontSize: '16px',
-        fontWeight: 'bold',
-        color: 'white'
-    },
-    textRight: {
-        fontSize: '13px',
-        textAlign: 'end'
-    },
-    link: {
-        textDecoration: 'none',
-        color: 'white'
-    }
-})
+import { Box, Typography, Link } from '@mui/material';
 
 function Footer() {
-    const { classes } = useStyles()
-
     return (
-        <Box className={classes.footer}>
-            <Box className={classes.footerText}>
-                <Typography className={classes.textLeft}>Rietow Family Dentistry</Typography>
+        <Box
+            sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                backgroundColor: 'black',
+                minHeight: '70px',
+                width: '100%',
+                px: 3,
+                flexWrap: 'wrap',
+                overflow: 'hidden',        // 👈 helps avoid overflow
+                boxSizing: 'border-box',   // 👈 ensures padding doesn't push width beyond 100%
+            }}
+        >
+
+            {/* Left Text */}
+            <Box sx={{ color: '#9c9c9c', py: 2 }}>
+                <Typography sx={{ fontSize: '16px', fontWeight: 'bold', color: 'white' }}>
+                    Rietow Family Dentistry
+                </Typography>
             </Box>
 
-            <Box className={classes.footerText}>
-                <Typography className={classes.textRight}>@2024 All Rights Reserved </Typography>
-                <Typography className={classes.textRight}>Developed and maintained by <a href='https://tviles.com' className={classes.link} target='_blank' rel='noreferrer'>Tcviles</a></Typography>
+            {/* Right Text */}
+            <Box sx={{ color: '#9c9c9c', py: 2, textAlign: 'end' }}>
+                <Typography sx={{ fontSize: '13px' }}>
+                    © 2024 All Rights Reserved
+                </Typography>
+                <Typography sx={{ fontSize: '13px' }}>
+                    Developed and maintained by{' '}
+                    <Link
+                        href="https://tviles.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        sx={{ color: 'white', textDecoration: 'none' }}
+                    >
+                        Tcviles
+                    </Link>
+                </Typography>
             </Box>
         </Box>
-    )
+    );
 }
-export default Footer
+
+export default Footer;

@@ -1,50 +1,63 @@
 import React from 'react';
-import { Divider, Grid, Typography } from '@mui/material';
-import { tss } from 'tss-react'
+import { Divider, Grid, Typography, Box } from '@mui/material';
+import content from '../content';
 
-const useStyles = tss.create({
-    servicesContainer: {
+function Services() {
+  const { heading, description } = content.servicesPage;
+
+  return (
+    <Grid
+      container
+      sx={{
         display: 'flex',
         justifyContent: 'center',
         alignContent: 'start',
-        height: '100vh',
-        background: 'white',
-        padding: '20px',
-        borderRadius: '10px'
-    },
-    imageContainer: {
-        margin: '20px',
-        '& img': {
-            width: '100%',
-            height: 'auto',
-            aspectRatio: 4 / 3
-        },
-    },
-    title: {
-        marginBottom: '20px'
-    }
-})
+        minHeight: '100vh',
+        backgroundColor: 'white',
+        padding: 3,
+        borderRadius: 2,
+      }}
+    >
+      {/* Title */}
+      <Grid item xs={12} sx={{ mb: 2 }}>
+        <Typography variant="h5">{heading}</Typography>
+        <Divider />
+      </Grid>
 
-function Services() {
-    const { classes } = useStyles()
-
-    return (
-        <Grid container className={classes.servicesContainer}>
-            <Grid item xs={12} className={classes.title} alignContent='start'>
-                <Typography variant='h5'>Our Services</Typography>
-                <Divider />
-            </Grid>
-            <Grid item xs={12} display='flex' alignContent='center' justifyContent='center'>
-                <Grid item xs={4} height='100%' alignContent='center'>
-                    <Typography variant='body1'>Gillum Dentistry offers an honest, compassionate, and experienced approach to Family Dentistry.  Our Dentist in Greenwood, Indiana has a simple philosophy. We treat our patients like family and give them what they want, while providing the highest standard of dental care.  Our dental team recognizes our patient’s health, comfort, and satisfaction as our number one priority.  Ask about Dr. Gillum’s Comfortable Dental Injections Technique, with complimentary “Nitrous Oxide!” At our dental clinic in Greenwood, IN your family’s trip to the dentist doesn’t have to be an unpleasant experience.  Never fear injections again!  Read More…</Typography>
-                </Grid>
-
-                <Grid item xs={7} className={classes.imageContainer}>
-                    <img src={require('../media/OfficeShot.png')} alt='' />
-                </Grid>
-            </Grid>
+      {/* Content */}
+      <Grid
+        item
+        xs={12}
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="center"
+        gap={3}
+      >
+        {/* Text */}
+        <Grid item xs={12} md={5}>
+          <Typography variant="body1" whiteSpace="pre-line">
+            {description}
+          </Typography>
         </Grid>
-    );
+
+        {/* Image */}
+        <Grid item xs={12} md={6}>
+          <Box
+            component="img"
+            src={require('../media/OfficeShot.png')}
+            alt="Office"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              aspectRatio: '4 / 3',
+              borderRadius: 2,
+            }}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default Services;
