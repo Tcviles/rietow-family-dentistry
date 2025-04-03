@@ -17,14 +17,16 @@ type ServicesDetailProps = {
 
 
 function ServicesDetail({ selectedService }: ServicesDetailProps) {
-  const { intro, categories } = content.servicesPage;
+  const { intro, servicesContent} = content.servicesPage;
+
   if (!selectedService) return (
     <Grid item xs={12} sx={{ mb: 3 }}>
       <Typography variant="body1" whiteSpace="pre-line">
         {intro}
       </Typography>
     </Grid>)
-  const data = categories.find(category => category.id === selectedService)
+  const allServices = servicesContent.flatMap(cat => cat.services);
+  const data = allServices.find(service => service.id === selectedService);
 
   return (
     <Box sx={{ px: 2, py: 3 }}>
