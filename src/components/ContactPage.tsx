@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Divider, Grid, Typography, Box } from '@mui/material';
 import MeetDrJoe from './shared/MeetDrJoe';
+import OfficeInfo from './shared/OfficeInfo';
+import ContactForm from './ContactForm';
 
 function ContactPage() {
   return (
@@ -20,6 +22,11 @@ function ContactPage() {
       <Grid item xs={12} sx={{ mb: 2 }}>
         <Typography variant="h5">Contact Us</Typography>
         <Divider />
+      </Grid>
+
+      {/* Office Info Box */}
+      <Grid item xs={12}>
+        <OfficeInfo />
       </Grid>
 
       {/* Content Layout */}
@@ -64,6 +71,10 @@ function ContactPage() {
         {/* Dr. Joe Card */}
         <Grid item xs={12} md={4}>
           <MeetDrJoe />
+        </Grid>
+
+        <Grid item xs={12}>
+          <ContactForm />
         </Grid>
       </Grid>
     </Grid>

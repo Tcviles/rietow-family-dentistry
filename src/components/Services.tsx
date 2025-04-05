@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Grid,
   Typography,
   Box,
   Divider,
-  Button,
 } from '@mui/material';
 import content from '../content';
 import ServicesDetail from './services/ServicesDetail';
