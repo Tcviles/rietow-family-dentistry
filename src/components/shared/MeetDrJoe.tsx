@@ -2,7 +2,7 @@ import { Grid, Button, Typography } from '@mui/material';
 import content from '../../content';
 
 function MeetDrJoe() {
-  const { name, clinic, quote, teamPageLink, headshot } = content.team.drJoe;
+  const { name, clinic, quote, headshot } = content.team.drJoe;
 
   return (
     <Grid
@@ -11,8 +11,7 @@ function MeetDrJoe() {
       justifyContent="space-around"
       alignItems="center"
       sx={{
-        backgroundColor: '#DDD',
-        border: '2px solid #DDD',
+        backgroundColor: '#EEE',
         borderRadius: '10px',
         padding: 2,
         textAlign: 'center',
@@ -52,7 +51,7 @@ function MeetDrJoe() {
       {/* CTA Button */}
       <Grid item sx={{ width: '100%' }}>
         <Button
-          href={teamPageLink}
+          href="/team"
           sx={{
             backgroundColor: '#999',
             color: 'white',

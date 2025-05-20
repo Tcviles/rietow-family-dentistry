@@ -63,7 +63,7 @@ function ServicesPage() {
             sx={{
               display: 'grid',
               gridTemplateColumns: {
-                xs: '1fr',
+                xs: '1fr 1fr',
                 sm: '1fr 1fr',
                 md: '1fr 1fr 1fr',
                 lg: 'repeat(6, 1fr)',
@@ -79,7 +79,7 @@ function ServicesPage() {
                   handleSelectCategory(id)
                   setTimeout(() => {
                     if (detailRef.current) {
-                      const yOffset = -120; // Adjust based on your navbar height (e.g., 100px)
+                      const yOffset = -130; // Adjust based on your navbar height (e.g., 100px)
                       const y = detailRef.current.getBoundingClientRect().top + window.scrollY + yOffset;
                       window.scrollTo({ top: y, behavior: 'smooth' });
                     }
@@ -111,6 +111,8 @@ function ServicesPage() {
           </Box>
         )}
 
+        <Box ref={detailRef} />
+
         {/* Service Buttons */}
         {selectedCategoryObj && selectedCategoryObj.services.length > 1 && (
           <Box
@@ -122,8 +124,8 @@ function ServicesPage() {
                 md: '1fr 1fr 1fr',
                 lg: 'repeat(8, 1fr)',
               },
-              gap: 3,
-              mb: 4,
+              gap: 2,
+              mb: 3,
             }}
           >
             {selectedCategoryObj.services.map(({ id, title, icon: Icon }) => (
@@ -159,7 +161,6 @@ function ServicesPage() {
 
         {/* Service Detail */}
         <Box
-          ref={detailRef}
           sx={{
             backgroundColor: '#f9f9f9',
             borderRadius: 2,

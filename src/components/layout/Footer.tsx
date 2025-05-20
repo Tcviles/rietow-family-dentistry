@@ -5,27 +5,29 @@ function Footer() {
         <Box
             sx={{
                 display: 'flex',
+                flexDirection: { xs: 'column', sm: 'row' }, // 👈 vertical on mobile, horizontal on tablet+
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: { xs: 'flex-start', sm: 'center' },
                 backgroundColor: 'black',
                 minHeight: '70px',
                 width: '100%',
                 px: 3,
-                flexWrap: 'wrap',
-                overflow: 'hidden',        // 👈 helps avoid overflow
-                boxSizing: 'border-box',   // 👈 ensures padding doesn't push width beyond 100%
+                py: 2,
+                gap: 1, // 👈 adds spacing between top/bottom on mobile
+                boxSizing: 'border-box',
             }}
         >
 
+
             {/* Left Text */}
-            <Box sx={{ color: '#9c9c9c', py: 2 }}>
+            <Box sx={{ color: '#9c9c9c' }}>
                 <Typography sx={{ fontSize: '16px', fontWeight: 'bold', color: 'white' }}>
                     Rietow Family Dentistry
                 </Typography>
             </Box>
 
             {/* Right Text */}
-            <Box sx={{ color: '#9c9c9c', py: 2, textAlign: 'end' }}>
+            <Box sx={{ color: '#9c9c9c', textAlign: { xs: 'left', sm: 'right' } }}>
                 <Typography sx={{ fontSize: '13px' }}>
                     © 2024 All Rights Reserved
                 </Typography>
