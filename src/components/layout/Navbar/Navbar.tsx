@@ -43,7 +43,15 @@ export default function Navbar() {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container alignItems="center" sx={{ py: 1 }}>
+        <Grid
+          container
+          alignItems="center"
+          sx={{
+            minHeight: '15vh',          // Ensure full height consistency
+            px: { xs: 1, sm: 2 },
+            py: 0,                       // Remove extra padding
+          }}
+        >
           {/* Hamburger menu – mobile only */}
           <Grid
             item

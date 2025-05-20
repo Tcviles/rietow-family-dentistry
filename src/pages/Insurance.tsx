@@ -72,7 +72,11 @@ const MembershipCard = ({
       <CardContent sx={{ backgroundColor: '#005880', textAlign: 'center' }}>
         <Button
           variant="contained"
-          sx={{ backgroundColor: '#91B2C7', color: '#000', ':hover': { backgroundColor: '#80A1B6' } }}
+          sx={{
+            backgroundColor: '#91B2C7',
+            color: '#000',
+            ':hover': { backgroundColor: '#80A1B6' },
+          }}
         >
           SIGN UP NOW!
         </Button>
@@ -154,6 +158,20 @@ const DiscountPlansPage = () => {
           }}
         />
 
+        {/* Intro Narrative */}
+        <Box sx={{ mb: 5 }}>
+          <Typography paragraph>
+            <strong>Rietow Family Dentistry’s exclusive Friendly Smile Dental Membership</strong> is for new patients and current patients alike who are not currently covered by dental insurance. Our membership plans allow for a complete continuation of preventative care and provide a helpful solution for those without coverage.
+          </Typography>
+          <Typography paragraph>
+            Our dental membership plans offer an affordable, hassle-free way for you and your family to receive the dental care you need. Dental treatment costs can add up, especially if you miss your periodic dental check-ups. Each level of our membership program includes 2 dental exams per year—and much more!
+          </Typography>
+          <Typography paragraph>
+            We want you to take care of your teeth and enjoy the benefits of good oral hygiene. It is our belief that our membership plans can help facilitate a lifetime of consistent dental care. <strong>Contact us today!</strong>
+          </Typography>
+        </Box>
+
+        {/* Pricing Cards */}
         <Grid container spacing={4} justifyContent="center">
           {plans.map((plan, index) => (
             <Grid item key={index}>
