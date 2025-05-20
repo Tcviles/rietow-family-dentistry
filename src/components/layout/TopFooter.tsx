@@ -1,9 +1,8 @@
-import React from 'react';
-import { Grid, Box } from '@mui/material';
-import MeetDrJoe from './shared/MeetDrJoe';
-import Map from './shared/Map';
-import Hours from './shared/Hours';
-import OfficeInfo from './shared/OfficeInfo';
+import { Grid } from '@mui/material';
+import MeetDrJoe from '../shared/MeetDrJoe';
+import Map from '../shared/Map';
+import Hours from '../shared/Hours';
+import OfficeInfo from '../shared/OfficeInfo';
 
 function TopFooter() {
   return (

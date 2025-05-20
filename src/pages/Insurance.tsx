@@ -1,40 +1,54 @@
 import React from 'react';
-import { Box, Typography, Card, CardContent, Button, Grid } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+  Container,
+  Grid,
+  Paper,
+  Divider,
+} from '@mui/material';
 
-const MembershipCard = ({ title, price, features }: { title: string; price: number; features: string[] }) => {
+const MembershipCard = ({
+  title,
+  price,
+  features,
+}: {
+  title: string;
+  price: number;
+  features: string[];
+}) => {
   return (
     <Card
       sx={{
         width: 300,
         borderRadius: 2,
         overflow: 'hidden',
-        boxShadow: '0 0 0 1px #fff, 0 0 0 8px #005880', // Dark blue outer border and white inner border
-        mb: 2,
+        boxShadow: '0 0 0 1px #fff, 0 0 0 8px #005880',
+        transition: '0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: '0 0 0 1px #fff, 0 0 0 10px #004766',
+        },
       }}
     >
       <CardContent sx={{ backgroundColor: '#91B2C7', textAlign: 'center' }}>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}
-        >
+        <Typography variant="h6" component="div" noWrap>
           {title}
         </Typography>
       </CardContent>
 
       <CardContent sx={{ backgroundColor: '#005880', position: 'relative', color: 'white', textAlign: 'center' }}>
         <Box display="inline-flex" alignItems="flex-start">
-          <Typography variant="h4" component="span" sx={{ verticalAlign: 'top' }}>
+          <Typography variant="h4" component="span">
             $
           </Typography>
-          <Typography variant="h1" component="span">
+          <Typography variant="h1" component="span" sx={{ lineHeight: 1 }}>
             {price}
           </Typography>
-          <Typography variant="h4" component="span" sx={{ verticalAlign: 'top', marginLeft: '2px' }}>
+          <Typography variant="h4" component="span" sx={{ marginLeft: '2px' }}>
             00
           </Typography>
         </Box>
@@ -47,10 +61,10 @@ const MembershipCard = ({ title, price, features }: { title: string; price: numb
         </Typography>
       </CardContent>
 
-      <CardContent sx={{ backgroundColor: '#91B2C7', textAlign: 'center', color: '#000' }}>
-        {features.map((feature: string, index: any) => (
-          <Typography key={index} variant="body1">
-            {feature}
+      <CardContent sx={{ backgroundColor: '#91B2C7', textAlign: 'left', color: '#000', px: 3 }}>
+        {features.map((feature: string, index: number) => (
+          <Typography key={index} variant="body2" sx={{ mb: 0.5 }}>
+            • {feature}
           </Typography>
         ))}
       </CardContent>
@@ -67,7 +81,7 @@ const MembershipCard = ({ title, price, features }: { title: string; price: numb
   );
 };
 
-const MembershipCardsContainer = () => {
+const DiscountPlansPage = () => {
   const plans = [
     {
       title: 'Adult Membership Plan',
@@ -112,18 +126,44 @@ const MembershipCardsContainer = () => {
         '1 Emergency Office Visit',
       ],
     },
-    // You can add more plans here if needed
   ];
 
   return (
-    <Grid container spacing={4} justifyContent="center">
-      {plans.map((plan, index) => (
-        <Grid item key={index}>
-          <MembershipCard title={plan.title} price={plan.price} features={plan.features} />
+    <Container maxWidth="lg">
+      <Paper elevation={3} sx={{ p: { xs: 3, md: 6 }, borderRadius: 3 }}>
+        {/* Header */}
+        <Typography
+          variant="h4"
+          sx={{
+            fontStyle: 'italic',
+            fontWeight: 600,
+            mb: 1,
+            textAlign: 'center',
+          }}
+        >
+          Membership Discount Plans
+        </Typography>
+
+        <Divider
+          sx={{
+            width: 60,
+            borderBottomWidth: 3,
+            borderColor: 'primary.main',
+            mx: 'auto',
+            my: 3,
+          }}
+        />
+
+        <Grid container spacing={4} justifyContent="center">
+          {plans.map((plan, index) => (
+            <Grid item key={index}>
+              <MembershipCard {...plan} />
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
+      </Paper>
+    </Container>
   );
 };
 
-export default MembershipCardsContainer;
+export default DiscountPlansPage;
