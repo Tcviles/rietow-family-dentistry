@@ -11,6 +11,7 @@ import {
   Divider,
   Box,
   Typography,
+  Container,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,13 +23,14 @@ const navLinks = [
   { label: 'Services', path: '/services' },
   { label: 'Our Team', path: '/team' },
   { label: 'Discount Plans', path: '/discount' },
+  { label: 'Patient Forms', path: '/forms' },
 ];
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <Grid
+    <Box
       component="header"
       sx={{
         position: 'fixed',
@@ -38,97 +40,90 @@ export default function Navbar() {
         backgroundColor: '#fff',
         borderBottom: '2px solid #DDD',
         zIndex: 2,
-        display: 'flex',
-        justifyContent: 'center',
       }}
     >
-      <Grid
-        container
-        md={10}
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ px: 2 }}
-      >
-        {/* Logo */}
-        <Grid item xs={6} sm={3}>
-          <Link to="/">
-            <img
-              src={require('../../../media/NavbarLogo.jpg')}
-              alt="Logo"
-              style={{
-                maxHeight: '10vh',
-                height: 'auto',
-                maxWidth: '100%',
-              }}
-            />
-          </Link>
-        </Grid>
+      <Container maxWidth="lg">
+        <Grid container alignItems="center" sx={{ py: 1 }}>
+          {/* Hamburger menu – mobile only */}
+          <Grid
+            item
+            xs={2}
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              justifyContent: 'flex-start',
+            }}
+          >
+            <IconButton onClick={() => setDrawerOpen(true)}>
+              <MenuIcon fontSize="large" />
+            </IconButton>
+          </Grid>
 
-        {/* Nav Links (desktop only) */}
-        <Grid
-          item
-          sm={6}
-          sx={{
-            display: { xs: 'none', md: 'flex' },
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {navLinks.map(({ label, path }) => (
-            <Link
-              key={path}
-              to={path}
-              style={{
-                textDecoration: 'none',
-                color: '#A5A5A5',
-                fontStyle: 'italic',
-                fontSize: '18px',
-                marginRight: '30px',
-              }}
-              onMouseOver={e => (e.currentTarget.style.color = '#888')}
-              onMouseOut={e => (e.currentTarget.style.color = '#A5A5A5')}
-            >
-              <Typography>{label}</Typography>
+          {/* Logo */}
+          <Grid
+            item
+            xs={8}
+            md={3}
+            sx={{
+              display: 'flex',
+              justifyContent: { xs: 'flex-end', md: 'flex-start' },
+            }}
+          >
+            <Link to="/">
+              <img
+                src={require('../../../media/NavbarLogo.jpg')}
+                alt="Logo"
+                style={{ maxHeight: '10vh', height: 'auto', maxWidth: '100%' }}
+              />
             </Link>
-          ))}
-        </Grid>
+          </Grid>
 
-        {/* Contact Section (desktop only) */}
-        <Grid
-          item
-          sm={3}
-          sx={{
-            display: { xs: 'none', md: 'flex' },
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            height: '90%',
-          }}
-        >
-          <Contact />
-        </Grid>
+          {/* Nav Links - desktop only */}
+          <Grid
+            item
+            md={6}
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {navLinks.map(({ label, path }) => (
+              <Link
+                key={path}
+                to={path}
+                style={{
+                  textDecoration: 'none',
+                  color: '#A5A5A5',
+                  fontStyle: 'italic',
+                  fontSize: '18px',
+                  marginRight: '30px',
+                }}
+                onMouseOver={e => (e.currentTarget.style.color = '#888')}
+                onMouseOut={e => (e.currentTarget.style.color = '#A5A5A5')}
+              >
+                <Typography>{label}</Typography>
+              </Link>
+            ))}
+          </Grid>
 
-        {/* Hamburger Menu Icon (mobile only) */}
-        <Grid
-          item
-          xs={6}
-          sx={{
-            display: { xs: 'flex', md: 'none' },
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-          }}
-        >
-          <IconButton onClick={() => setDrawerOpen(true)}>
-            <MenuIcon fontSize="large" />
-          </IconButton>
+          {/* Contact - desktop only */}
+          <Grid
+            item
+            md={3}
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              height: '90%',
+            }}
+          >
+            <Contact />
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
 
       {/* Mobile Drawer */}
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
+      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box sx={{ width: 280, p: 2 }}>
           {/* Close Button */}
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -197,6 +192,6 @@ export default function Navbar() {
           </Stack>
         </Box>
       </Drawer>
-    </Grid>
+    </Box>
   );
 }

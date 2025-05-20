@@ -33,7 +33,7 @@ const HomePage = () => {
             <Grid item xs={12} md={6}>
               <Box
                 component="img"
-                src={require('../media/OfficeShot.png')}
+                src={require('../media/JoeInfrontOfOffice.png')}
                 alt="Office"
                 sx={{
                   width: '100%',
