@@ -11,6 +11,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 const staffMembers = [
   { name: 'Bethany', image: require('../media/staff-pics/DanaHeadshot.png') },
@@ -38,21 +39,24 @@ const StaffCard = ({ name, image }: { name: string; image: string }) => (
       },
     }}
   >
-    <CardContent>
+    <Grid p={{ xs: 1.5, md: 2 }}>
       <Avatar
         alt={name}
         src={image}
         sx={{
-          width: 100,
-          height: 100,
+          width: { xs: 60, sm: 90, md: 100 },
+          height: { xs: 60, sm: 90, md: 100 },
           margin: 'auto',
           border: '2px solid #ddd',
         }}
       />
-      <Typography variant="h6" sx={{ marginTop: 2 }}>
+      <Typography
+        variant="body1"
+        sx={{ marginTop: 2, fontSize: { xs: '0.9rem', sm: '1rem' } }}
+      >
         {name}
       </Typography>
-    </CardContent>
+    </Grid>
   </Card>
 );
 
@@ -61,6 +65,22 @@ const TeamPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Meet the Team | Rietow Family Dentistry in Greenwood, IN</title>
+        <meta
+          name="description"
+          content="Get to know the caring and experienced staff at Rietow Family Dentistry. Learn more about Dr. Joe Rietow and his team serving Greenwood, Indiana."
+        />
+        <meta property="og:title" content="Meet the Team | Rietow Family Dentistry" />
+        <meta
+          property="og:description"
+          content="Meet the friendly faces behind Rietow Family Dentistry. We treat our patients like family and deliver gentle, high-quality care in Greenwood, IN."
+        />
+        <meta property="og:url" content="https://www.rietowfamilydentistry.com/team" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.rietowfamilydentistry.com/team" />
+      </Helmet>
+
       {/* Image Modal */}
       <Modal open={!!modalImage} onClose={() => setModalImage(null)}>
         <Box

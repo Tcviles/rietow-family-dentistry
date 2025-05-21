@@ -1,8 +1,27 @@
 import { Box, Container, Divider, Grid, Paper, Typography } from '@mui/material';
+import { Helmet } from 'react-helmet';
 import content from '../content';
 
 const HomePage = () => {
   return (
+    <>
+      <Helmet>
+        <title>Rietow Family Dentistry | Family & Cosmetic Dentist in Greenwood, IN</title>
+        <meta
+          name="description"
+          content="Gentle, high-quality family and cosmetic dentistry in Greenwood, Indiana. Offering cleanings, whitening, implants, Invisalign, and more."
+        />
+        <meta property="og:title" content="Rietow Family Dentistry | Greenwood, IN" />
+        <meta
+          property="og:description"
+          content="Visit Rietow Family Dentistry for gentle family and cosmetic dental care. Accepting new patients of all ages in Greenwood, IN."
+        />
+        <meta property="og:image" content="https://www.rietowfamilydentistry.com/preview.jpg" />
+        <meta property="og:url" content="https://www.rietowfamilydentistry.com/" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.rietowfamilydentistry.com/" />
+      </Helmet>
+
       <Container maxWidth="lg">
         <Paper elevation={3} sx={{ p: { xs: 3, md: 6 }, borderRadius: 3 }}>
           {/* Header */}
@@ -34,7 +53,7 @@ const HomePage = () => {
               <Box
                 component="img"
                 src={require('../media/JoeInfrontOfOffice.png')}
-                alt="Office"
+                alt="Dr. Joe Rietow in front of dental office"
                 sx={{
                   width: '100%',
                   height: 'auto',
@@ -52,6 +71,7 @@ const HomePage = () => {
           </Grid>
         </Paper>
       </Container>
+    </>
   );
 };
 
