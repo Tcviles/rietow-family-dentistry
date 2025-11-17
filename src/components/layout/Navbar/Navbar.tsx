@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import Contact from './Contact';
-import content from '../../../content';
+import { contactInfo } from '../../../data/contactInfo';
 
 const navLinks = [
   { label: 'Services', path: '/services' },
@@ -160,7 +160,7 @@ export default function Navbar() {
           {/* Action Buttons */}
           <Stack spacing={1}>
             <Button
-              href={content.contactInfo.contactPage}
+              href={contactInfo.contactPage}
               variant="contained"
               sx={{
                 backgroundColor: '#999',
@@ -173,7 +173,7 @@ export default function Navbar() {
             </Button>
 
             <Button
-              href={content.contactInfo.phoneLink}
+              href={contactInfo.phoneLink}
               variant="contained"
               sx={{
                 backgroundColor: '#999',
@@ -182,11 +182,11 @@ export default function Navbar() {
               }}
               fullWidth
             >
-              {content.contactInfo.phone}
+              {contactInfo.phone}
             </Button>
 
             <Button
-              href={content.contactInfo.payLink}
+              href={contactInfo.payLink}
               variant="contained"
               sx={{
                 backgroundColor: '#999',

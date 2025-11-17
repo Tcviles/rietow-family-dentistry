@@ -1,8 +1,8 @@
 import { Box, Button } from '@mui/material';
-import content from '../../../content';
+import { contactInfo } from '../../../data/contactInfo';
 
 function Contact() {
-  const { contactPage, phone, phoneLink, payLink } = content.contactInfo;
+  const { contactPage, phone, phoneLink, payLink } = contactInfo;
 
   return (
     <Box

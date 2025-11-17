@@ -1,5 +1,6 @@
 import { Grid, Typography, Box } from '@mui/material';
 import content from '../../content';
+import { officeHours } from '../../data/officeHours';
 
 function Hours() {
   return (
@@ -37,7 +38,7 @@ function Hours() {
         Office Hours
       </Typography>
 
-      {content.officeHours.map(({ day, hours }) => (
+      {officeHours.map(({ day, hours }) => (
         <Typography key={day} variant="body1">
           {day}: {hours}
         </Typography>

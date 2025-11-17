@@ -20,22 +20,6 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 const content = {
-  colors: {
-    darkGrey: "#999",
-    lightGrey: "#DDD",
-    white: "#fff",
-    red: "#BD1919",
-  },
-  contactInfo: {
-    phone: "317-888-7576",
-    phoneLink: "tel:317-888-7576",
-    email: 'info@rietowfamilydentistry.com',
-    address: "1234 Smile Street, Indianapolis, IN 46201",
-    addressLine1: '1259 N State Rd 135 E',
-    addressLine2: 'Greenwood, IN 46142',
-    payLink: "/pay",
-    contactPage: "/contact",
-  },
   homePage: {
     welcomeTitle: "Welcome to Rietow Family Dentistry!",
     aboutDentistry: {
@@ -52,15 +36,6 @@ const content = {
       `
     }
   },
-  officeHours: [
-    { day: "Mon", hours: "8AM - 5PM" },
-    { day: "Tues", hours: "8AM - 5PM" },
-    { day: "Wed", hours: "8AM - 5PM" },
-    { day: "Thurs", hours: "8AM - 5PM" },
-    { day: "Fri", hours: "CLOSED" },
-    { day: "Sat", hours: "CLOSED" },
-    { day: "Sun", hours: "CLOSED" },
-  ],
   team: {
     drJoe: {
       name: "Dr. Joe Rietow, DDS",
