@@ -2,7 +2,7 @@ import { Grid, Link, Typography, Box } from '@mui/material';
 import RoomIcon from '@mui/icons-material/Room';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
-import content from '../../content';
+import { contactInfo } from '../../data/contactInfo';
 
 function OfficeInfo() {
   const {
@@ -10,7 +10,7 @@ function OfficeInfo() {
     addressLine2,
     phone,
     email,
-  } = content.contactInfo;
+  } = contactInfo;
 
   return (
     <Box
@@ -27,7 +27,7 @@ function OfficeInfo() {
       <Box sx={{ mb: 3, textAlign: 'center' }}>
         <Box
           component="img"
-          src={require('../../media/r2-01.jpg')}
+          src={require('../../assets/r2-01.jpg')}
           alt="Rietow Family Dentistry"
           sx={{ maxHeight: 60, width: 'auto', objectFit: 'contain' }}
         />

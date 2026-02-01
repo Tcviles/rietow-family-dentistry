@@ -14,15 +14,15 @@ import {
 import { Helmet } from 'react-helmet';
 
 const staffMembers = [
-  { name: 'Bethany', image: require('../media/staff-pics/DanaHeadshot.png') },
-  { name: 'Chelsea', image: require('../media/staff-pics/GloriaHeadshot.png') },
-  { name: 'Dana', image: require('../media/staff-pics/DanaHeadshot.png') },
-  { name: 'Gloria', image: require('../media/staff-pics/GloriaHeadshot.png') },
-  { name: 'Kim', image: require('../media/staff-pics/KimHeadshot.png') },
-  { name: 'Lisa', image: require('../media/staff-pics/GloriaHeadshot.png') },
-  { name: 'Libby', image: require('../media/staff-pics/KimHeadshot.png') },
-  { name: 'Rachel', image: require('../media/staff-pics/DanaHeadshot.png') },
-  { name: 'Tracie', image: require('../media/staff-pics/KimHeadshot.png') },
+  { name: 'Bethany', image: require('../assets/staff-pics/DanaHeadshot.png') },
+  { name: 'Chelsea', image: require('../assets/staff-pics/GloriaHeadshot.png') },
+  { name: 'Dana', image: require('../assets/staff-pics/DanaHeadshot.png') },
+  { name: 'Gloria', image: require('../assets/staff-pics/GloriaHeadshot.png') },
+  { name: 'Kim', image: require('../assets/staff-pics/KimHeadshot.png') },
+  { name: 'Lisa', image: require('../assets/staff-pics/GloriaHeadshot.png') },
+  { name: 'Libby', image: require('../assets/staff-pics/KimHeadshot.png') },
+  { name: 'Rachel', image: require('../assets/staff-pics/DanaHeadshot.png') },
+  { name: 'Tracie', image: require('../assets/staff-pics/KimHeadshot.png') },
 ];
 
 const StaffCard = ({ name, image }: { name: string; image: string }) => (
@@ -139,7 +139,7 @@ const TeamPage = () => {
               <Grid item xs={12} md={4}>
                 <Box
                   component="img"
-                  src={require('../media/JoeHeadshot1x1.png')}
+                  src={require('../assets/JoeHeadshot1x1.png')}
                   alt="Dr. Joe Rietow"
                   sx={{
                     width: '100%',
@@ -150,7 +150,7 @@ const TeamPage = () => {
                     cursor: 'pointer',
                   }}
                   onClick={() =>
-                    setModalImage(require('../media/JoeHeadshot1x1.png'))
+                    setModalImage(require('../assets/JoeHeadshot1x1.png'))
                   }
                 />
               </Grid>
@@ -190,7 +190,7 @@ const TeamPage = () => {
               }}
             >
               {[...Array(4)].map((_, i) => {
-                const src = require(`../media/joe-with-family/image${i + 1}.png`);
+                const src = require(`../assets/joe-with-family/image${i + 1}.png`);
                 return (
                   <Box
                     key={`fam-${i}`}
@@ -241,7 +241,7 @@ const TeamPage = () => {
               }}
             >
               {[...Array(3)].map((_, i) => {
-                const src = require(`../media/joe-with-patient/image${i + 1}.png`);
+                const src = require(`../assets/joe-with-patient/image${i + 1}.png`);
                 return (
                   <Box
                     key={`patient-${i}`}
@@ -280,7 +280,7 @@ const TeamPage = () => {
               }}
             >
               {[...Array(5)].map((_, i) => {
-                const src = require(`../media/joe-with-staff/image${i + 1}.png`);
+                const src = require(`../assets/joe-with-staff/image${i + 1}.png`);
                 return (
                   <Box
                     key={`staff-pic-${i}`}

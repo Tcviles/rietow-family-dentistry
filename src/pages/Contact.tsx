@@ -78,7 +78,7 @@ const ContactPage = () => {
             >
               <Box
                 component="img"
-                src={require('../media/VirtualTour.png')}
+                src={require('../assets/VirtualTour.png')}
                 alt="Virtual Tour of the dental office"
                 sx={{
                   width: '100%',

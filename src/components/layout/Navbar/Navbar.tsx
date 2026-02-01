@@ -18,6 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import Contact from './Contact';
 import { contactInfo } from '../../../data/contactInfo';
+import { NAVBAR_HEIGHT } from './navConstants';
 
 const navLinks = [
   { label: 'Services', path: '/services' },
@@ -32,27 +33,31 @@ export default function Navbar() {
   return (
     <Box
       component="header"
-      sx={{
+      sx={(theme) => ({
         position: 'fixed',
         top: 0,
-        width: '100vw',
-        minHeight: '15vh',
-        backgroundColor: '#fff',
-        borderBottom: '2px solid #DDD',
-        zIndex: 2,
-      }}
+        left: 0,
+        right: 0,
+        width: '100%',
+        height: { xs: NAVBAR_HEIGHT.xs, md: NAVBAR_HEIGHT.md },
+        bgcolor: 'common.white',
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+        zIndex: theme.zIndex.appBar,
+        display: 'flex',
+        alignItems: 'center',
+      })}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ height: '100%' }}>
         <Grid
           container
           alignItems="center"
           sx={{
-            minHeight: '15vh',          // Ensure full height consistency
+            height: '100%',
             px: { xs: 1, sm: 2 },
-            py: 0,                       // Remove extra padding
           }}
         >
-          {/* Hamburger menu – mobile only */}
+          {/* Hamburger – mobile only */}
           <Grid
             item
             xs={2}
@@ -61,7 +66,7 @@ export default function Navbar() {
               justifyContent: 'flex-start',
             }}
           >
-            <IconButton onClick={() => setDrawerOpen(true)}>
+            <IconButton onClick={() => setDrawerOpen(true)} aria-label="Open menu">
               <MenuIcon fontSize="large" />
             </IconButton>
           </Grid>
@@ -74,18 +79,25 @@ export default function Navbar() {
             sx={{
               display: 'flex',
               justifyContent: { xs: 'flex-end', md: 'flex-start' },
+              alignItems: 'center',
+              height: '100%',
             }}
           >
-            <Link to="/">
-              <img
-                src={require('../../../media/NavbarLogo.jpg')}
-                alt="Logo"
-                style={{ maxHeight: '10vh', height: 'auto', maxWidth: '100%' }}
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <Box
+                component="img"
+                src={require('../../../assets/NavbarLogo.jpg')}
+                alt="Rietow Family Dentistry"
+                sx={{
+                  height: { xs: 44, md: 64 },
+                  width: 'auto',
+                  display: 'block',
+                }}
               />
             </Link>
           </Grid>
 
-          {/* Nav Links - desktop only */}
+          {/* Nav Links – desktop only */}
           <Grid
             item
             md={6}
@@ -96,25 +108,25 @@ export default function Navbar() {
             }}
           >
             {navLinks.map(({ label, path }) => (
-              <Link
+              <Box
                 key={path}
+                component={Link}
                 to={path}
-                style={{
+                sx={{
                   textDecoration: 'none',
-                  color: '#A5A5A5',
+                  color: 'text.secondary',
                   fontStyle: 'italic',
-                  fontSize: '18px',
-                  marginRight: '30px',
+                  fontSize: 18,
+                  mr: 3.5,
+                  '&:hover': { color: 'text.primary' },
                 }}
-                onMouseOver={e => (e.currentTarget.style.color = '#888')}
-                onMouseOut={e => (e.currentTarget.style.color = '#A5A5A5')}
               >
-                <Typography>{label}</Typography>
-              </Link>
+                {label}
+              </Box>
             ))}
           </Grid>
 
-          {/* Contact - desktop only */}
+          {/* Contact – desktop only */}
           <Grid
             item
             md={3}
@@ -122,7 +134,6 @@ export default function Navbar() {
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'flex-end',
               alignItems: 'center',
-              height: '90%',
             }}
           >
             <Contact />
@@ -133,22 +144,20 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Box sx={{ width: 280, p: 2 }}>
-          {/* Close Button */}
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <IconButton onClick={() => setDrawerOpen(false)}>
+            <IconButton onClick={() => setDrawerOpen(false)} aria-label="Close menu">
               <CloseIcon />
             </IconButton>
           </Box>
 
-          {/* Nav Links */}
           <List>
             {navLinks.map(({ label, path }) => (
               <ListItem
                 key={path}
-                button
                 component={Link}
                 to={path}
                 onClick={() => setDrawerOpen(false)}
+                sx={{ cursor: 'pointer' }}
               >
                 <ListItemText primary={label} />
               </ListItem>
@@ -157,44 +166,14 @@ export default function Navbar() {
 
           <Divider sx={{ my: 2 }} />
 
-          {/* Action Buttons */}
           <Stack spacing={1}>
-            <Button
-              href={contactInfo.contactPage}
-              variant="contained"
-              sx={{
-                backgroundColor: '#999',
-                textTransform: 'none',
-                '&:hover': { backgroundColor: '#777' },
-              }}
-              fullWidth
-            >
+            <Button href={contactInfo.contactPage} variant="contained" fullWidth>
               Contact Us
             </Button>
-
-            <Button
-              href={contactInfo.phoneLink}
-              variant="contained"
-              sx={{
-                backgroundColor: '#999',
-                textTransform: 'none',
-                '&:hover': { backgroundColor: '#777' },
-              }}
-              fullWidth
-            >
+            <Button href={contactInfo.phoneLink} variant="outlined" fullWidth>
               {contactInfo.phone}
             </Button>
-
-            <Button
-              href={contactInfo.payLink}
-              variant="contained"
-              sx={{
-                backgroundColor: '#999',
-                textTransform: 'none',
-                '&:hover': { backgroundColor: '#777' },
-              }}
-              fullWidth
-            >
+            <Button href={contactInfo.payLink} variant="contained" fullWidth>
               Pay Now
             </Button>
           </Stack>

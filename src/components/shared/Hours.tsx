@@ -31,7 +31,7 @@ function Hours() {
           },
         }}
       >
-        <img src={require("../../media/OfficeShot.png")} alt="Our Office" />
+        <img src={require("../../assets/OfficeShot.png")} alt="Our Office" />
       </Grid>
 
       <Typography variant="h5" gutterBottom>
