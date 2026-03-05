@@ -1,5 +1,7 @@
 // src/data/contactInfo.ts
 
+import { routes } from './routes';
+
 // Define a type for the contact information for better type-safety
 export interface ContactInfo {
   phone: string;
@@ -20,6 +22,6 @@ export const contactInfo: ContactInfo = {
   address: "1234 Smile Street, Indianapolis, IN 46201", // This seems like a placeholder, but keeping it for now
   addressLine1: '1259 N State Rd 135 E',
   addressLine2: 'Greenwood, IN 46142',
-  payLink: "/pay",
-  contactPage: "/contact",
+  payLink: routes.pay,
+  contactPage: routes.contact,
 };

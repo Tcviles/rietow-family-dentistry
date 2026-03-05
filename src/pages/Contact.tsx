@@ -1,16 +1,14 @@
 import {
   Box,
   Button,
-  Container,
-  Divider,
   Grid,
-  Paper,
   Typography,
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import MeetDrJoe from '../components/shared/MeetDrJoe';
 import OfficeInfo from '../components/shared/OfficeInfo';
 import ContactForm from '../components/ContactForm';
+import PageShell from '../components/layout/PageShell';
 
 const ContactPage = () => {
   return (
@@ -31,31 +29,7 @@ const ContactPage = () => {
         <link rel="canonical" href="https://www.rietowfamilydentistry.com/contact" />
       </Helmet>
 
-      <Container maxWidth="lg">
-        <Paper elevation={3} sx={{ p: { xs: 3, md: 6 }, borderRadius: 3 }}>
-          {/* Header */}
-          <Typography
-            variant="h4"
-            sx={{
-              fontStyle: 'italic',
-              fontWeight: 600,
-              mb: 1,
-              textAlign: 'center',
-            }}
-          >
-            Contact Us
-          </Typography>
-
-          <Divider
-            sx={{
-              width: 60,
-              borderBottomWidth: 3,
-              borderColor: 'primary.main',
-              mx: 'auto',
-              my: 3,
-            }}
-          />
-
+      <PageShell title="Contact Us">
           {/* Office Info + Dr. Joe */}
           <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12} md={7}>
@@ -97,8 +71,7 @@ const ContactPage = () => {
             </Typography>
             <ContactForm />
           </Box>
-        </Paper>
-      </Container>
+      </PageShell>
     </>
   );
 };

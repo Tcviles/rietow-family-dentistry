@@ -8,6 +8,7 @@ import {
   FormControlLabel,
   Typography,
 } from '@mui/material';
+import { routes } from '../data/routes';
 
 type InquiryFields =
   | 'kids'
@@ -204,7 +205,7 @@ const ContactForm: React.FC = () => {
           <Button
             variant="contained"
             color="primary"
-            href="/pay-now" // Replace when you get the provider link
+            href={routes.pay}
             fullWidth
           >
             Pay Online

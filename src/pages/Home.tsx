@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import content from '../content';
+import { routes } from '../data/routes';
 
 // Optional icons
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
@@ -63,7 +64,7 @@ const HomePage = () => {
                   </Typography>
 
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
-                    <Button variant="contained" size="large" href="/contact">
+                    <Button variant="contained" size="large" href={routes.contact}>
                       Request Appointment
                     </Button>
                     <Button

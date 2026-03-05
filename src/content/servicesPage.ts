@@ -1,5 +1,3 @@
-// src/content.ts
-
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import ChildCareIcon from '@mui/icons-material/ChildCare';
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
@@ -18,33 +16,9 @@ import BuildIcon from '@mui/icons-material/Build';
 import BedtimeIcon from '@mui/icons-material/Bedtime';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
+import { ServicesPageContent } from './types';
 
-const content = {
-  homePage: {
-    welcomeTitle: "Welcome to Rietow Family Dentistry!",
-    aboutDentistry: {
-      heading: "Rietow Family Dentistry",
-      description: `
-        At Rietow Family Dentistry, we believe in providing high-quality, compassionate dental care for the whole family.
-        Led by Dr. Joseph Rietow, our team is dedicated to creating a comfortable and welcoming environment for all patients.
-        Whether you're in need of routine check-ups, advanced cosmetic procedures, or restorative treatments, we are here 
-        to ensure your dental health is in great hands.
-
-        With a focus on patient comfort, we use the latest techniques and technologies to make every visit stress-free 
-        and efficient. Experience the difference with personalized care tailored to meet your needs. Book an appointment 
-        today and let us take care of your smile!
-      `
-    }
-  },
-  team: {
-    drJoe: {
-      name: "Dr. Joe Rietow, DDS",
-      clinic: "Rietow Family Dentistry",
-      quote: `"As my patient, you can expect that I will help you achieve the smile that you have always wanted while using the latest technology available in dentistry."`,
-      headshot: require('./assets/JoeHeadshot1x1.png'),
-    },
-  },
-  servicesPage: {
+export const servicesPageContent: ServicesPageContent = {
     heading: "Our Services",
     intro: `
       Rietow Family Dentistry offers an honest, compassionate, and experienced approach to Family Dentistry. 
@@ -2875,7 +2849,4 @@ const content = {
         ]
       }
     ]
-  }
-};
-
-export default content;
+  };

@@ -10,7 +10,6 @@ import {
   ListItemText,
   Divider,
   Box,
-  Typography,
   Container,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -19,12 +18,13 @@ import { Link } from 'react-router-dom';
 import Contact from './Contact';
 import { contactInfo } from '../../../data/contactInfo';
 import { NAVBAR_HEIGHT } from './navConstants';
+import { routes } from '../../../data/routes';
 
 const navLinks = [
-  { label: 'Services', path: '/services' },
-  { label: 'Our Team', path: '/team' },
-  { label: 'Discount Plans', path: '/discount' },
-  { label: 'Patient Forms', path: '/forms' },
+  { label: 'Services', path: routes.services },
+  { label: 'Our Team', path: routes.team },
+  { label: 'Discount Plans', path: routes.discount },
+  { label: 'Patient Forms', path: routes.forms },
 ];
 
 export default function Navbar() {
@@ -167,13 +167,13 @@ export default function Navbar() {
           <Divider sx={{ my: 2 }} />
 
           <Stack spacing={1}>
-            <Button href={contactInfo.contactPage} variant="contained" fullWidth>
+            <Button component={Link} to={contactInfo.contactPage} variant="contained" fullWidth>
               Contact Us
             </Button>
             <Button href={contactInfo.phoneLink} variant="outlined" fullWidth>
               {contactInfo.phone}
             </Button>
-            <Button href={contactInfo.payLink} variant="contained" fullWidth>
+            <Button component={Link} to={contactInfo.payLink} variant="contained" fullWidth>
               Pay Now
             </Button>
           </Stack>

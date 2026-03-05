@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { contactInfo } from '../../../data/contactInfo';
 
 function Contact() {
@@ -20,7 +21,8 @@ function Contact() {
       {/* Top row: Contact + Phone side-by-side */}
       <Box sx={{ display: 'flex', gap: 1 }}>
         <Button
-          href={contactPage}
+          component={Link}
+          to={contactPage}
           fullWidth
           variant="contained"
           sx={{
@@ -53,7 +55,8 @@ function Contact() {
 
       {/* Bottom: Pay Now full-width */}
       <Button
-        href={payLink}
+        component={Link}
+        to={payLink}
         fullWidth
         variant="contained"
         sx={{

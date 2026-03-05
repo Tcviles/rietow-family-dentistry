@@ -10,6 +10,7 @@ import {
   Grid,
 } from '@mui/material';
 import content from '../../content';
+import { routes } from '../../data/routes';
 
 type ServicesDetailProps = {
   selectedService: string | null;
@@ -76,7 +77,7 @@ function ServicesDetail({ selectedService }: ServicesDetailProps) {
       <Button
         variant="contained"
         color="primary"
-        href="/contact"
+        href={routes.contact}
         sx={{ mt: 2 }}
       >
         {data?.buttonText}

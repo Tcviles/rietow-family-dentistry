@@ -1,5 +1,6 @@
 import { Grid, Button, Typography } from '@mui/material';
 import content from '../../content';
+import { routes } from '../../data/routes';
 
 function MeetDrJoe() {
   const { name, clinic, quote, headshot } = content.team.drJoe;
@@ -51,7 +52,7 @@ function MeetDrJoe() {
       {/* CTA Button */}
       <Grid item sx={{ width: '100%' }}>
         <Button
-          href="/team"
+          href={routes.team}
           sx={{
             backgroundColor: '#999',
             color: 'white',

@@ -1,14 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import {
   Box,
-  Container,
-  Divider,
-  Paper,
   Typography,
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import content from '../content';
 import ServicesDetail from '../components/services/ServicesDetail';
+import PageShell from '../components/layout/PageShell';
 
 function ServicesPage() {
   const { heading, servicesContent } = content.servicesPage;
@@ -50,31 +48,7 @@ function ServicesPage() {
         <link rel="canonical" href="https://www.rietowfamilydentistry.com/services" />
       </Helmet>
 
-      <Container maxWidth="lg">
-        <Paper elevation={3} sx={{ p: { xs: 3, md: 6 }, borderRadius: 3 }}>
-          {/* Page Heading */}
-          <Typography
-            variant="h4"
-            sx={{
-              fontStyle: 'italic',
-              fontWeight: 600,
-              mb: 1,
-              textAlign: 'center',
-            }}
-          >
-            {heading}
-          </Typography>
-
-          <Divider
-            sx={{
-              width: 60,
-              borderBottomWidth: 3,
-              borderColor: 'primary.main',
-              mx: 'auto',
-              my: 3,
-            }}
-          />
-
+      <PageShell title={heading}>
           {/* Category Selector */}
           {servicesContent.length > 1 && (
             <Box
@@ -188,8 +162,7 @@ function ServicesPage() {
           >
             <ServicesDetail selectedService={selectedService} />
           </Box>
-        </Paper>
-      </Container>
+      </PageShell>
     </>
   );
 }

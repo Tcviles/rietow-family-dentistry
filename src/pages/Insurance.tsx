@@ -5,10 +5,8 @@ import {
   Card,
   CardContent,
   Button,
-  Container,
   Grid,
   Paper,
-  Divider,
   Table,
   TableBody,
   TableCell,
@@ -17,6 +15,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
+import PageShell from '../components/layout/PageShell';
 
 const MembershipCard = ({
   title,
@@ -216,25 +215,7 @@ const InsurancePage = () => {
         <title>Dental Membership Plans | Rietow Family Dentistry</title>
       </Helmet>
 
-      <Container maxWidth="lg">
-        <Paper elevation={3} sx={{ p: { xs: 3, md: 6 }, borderRadius: 3 }}>
-          <Typography
-            variant="h4"
-            sx={{ fontStyle: 'italic', fontWeight: 600, mb: 1, textAlign: 'center' }}
-          >
-            Membership Discount Plans
-          </Typography>
-
-          <Divider
-            sx={{
-              width: 60,
-              borderBottomWidth: 3,
-              borderColor: 'primary.main',
-              mx: 'auto',
-              my: 3,
-            }}
-          />
-
+      <PageShell title="Membership Discount Plans">
           <Box sx={{ mb: 5 }}>
             <Typography paragraph>
               <strong>Rietow Family Dentistry’s exclusive Friendly Smile Dental Membership</strong> is for new patients and current patients alike who are not currently covered by dental insurance.
@@ -323,8 +304,7 @@ const InsurancePage = () => {
               <strong>Periodontal Disease Limitation:</strong> The benefits of this plan are provided to healthy patients who require routine cleanings only. Patients who develop periodontal or “Gum” disease may require a specialized treatment called <strong>scaling and root planing</strong>. Patients refer to this as a deep cleaning. Scaling and root planing is a therapeutic procedure that is typically administered with anesthetic and destroys harmful bacteria and removes hardened deposits below the gum line. If you require scaling and root planing, a 20% discount will be given off of our usual and customary fees.
             </Typography>
           </Box>
-        </Paper>
-      </Container>
+      </PageShell>
     </>
   );
 };
