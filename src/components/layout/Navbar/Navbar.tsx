@@ -1,22 +1,9 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Stack,
-  Grid,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  Box,
-  Container,
-} from '@mui/material';
+import { Grid, IconButton, Box, Container } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import Contact from './Contact';
-import { contactInfo } from '../../../data/contactInfo';
+import MobileMenu from './MobileMenu';
 import { NAVBAR_HEIGHT } from './navConstants';
 import { routes } from '../../../data/routes';
 
@@ -141,44 +128,7 @@ export default function Navbar() {
         </Grid>
       </Container>
 
-      {/* Mobile Drawer */}
-      <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <Box sx={{ width: 280, p: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <IconButton onClick={() => setDrawerOpen(false)} aria-label="Close menu">
-              <CloseIcon />
-            </IconButton>
-          </Box>
-
-          <List>
-            {navLinks.map(({ label, path }) => (
-              <ListItem
-                key={path}
-                component={Link}
-                to={path}
-                onClick={() => setDrawerOpen(false)}
-                sx={{ cursor: 'pointer' }}
-              >
-                <ListItemText primary={label} />
-              </ListItem>
-            ))}
-          </List>
-
-          <Divider sx={{ my: 2 }} />
-
-          <Stack spacing={1}>
-            <Button component={Link} to={contactInfo.contactPage} variant="contained" fullWidth>
-              Contact Us
-            </Button>
-            <Button href={contactInfo.phoneLink} variant="outlined" fullWidth>
-              {contactInfo.phone}
-            </Button>
-            <Button component={Link} to={contactInfo.payLink} variant="contained" fullWidth>
-              Pay Now
-            </Button>
-          </Stack>
-        </Box>
-      </Drawer>
+      <MobileMenu open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </Box>
   );
 }
