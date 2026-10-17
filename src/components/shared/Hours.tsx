@@ -1,5 +1,4 @@
-import { Grid, Typography, Box } from '@mui/material';
-import content from '../../content';
+import { Grid, Typography } from '@mui/material';
 import { officeHours } from '../../data/officeHours';
 
 function Hours() {
@@ -31,7 +30,7 @@ function Hours() {
           },
         }}
       >
-        <img src={require("../../assets/OfficeShot.png")} alt="Our Office" />
+        <img src={require("../../assets/OfficeShot.webp")} alt="Our Office" />
       </Grid>
 
       <Typography variant="h5" gutterBottom>

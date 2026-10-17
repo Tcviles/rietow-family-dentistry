@@ -1,4 +1,5 @@
-import React from 'react';
+import { Fragment } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Typography,
   Box,
@@ -44,9 +45,9 @@ function ServicesDetail({ selectedService }: ServicesDetailProps) {
       </Typography>
 
       {data?.sections?.map((section, index) => (
-        <>
+        <Fragment key={index}>
           <Divider sx={{ my: 3 }} />
-          <Box key={index} sx={{ mt: 4 }}>
+          <Box sx={{ mt: 4 }}>
             {section.title && (
               <Typography variant="h6" gutterBottom>
                 {section.title}
@@ -71,13 +72,14 @@ function ServicesDetail({ selectedService }: ServicesDetailProps) {
               </Typography>
             )}
           </Box>
-        </>
+        </Fragment>
       ))}
 
       <Button
         variant="contained"
         color="primary"
-        href={routes.contact}
+        component={RouterLink}
+        to={routes.contact}
         sx={{ mt: 2 }}
       >
         {data?.buttonText}

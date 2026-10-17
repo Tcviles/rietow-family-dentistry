@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -10,19 +10,20 @@ import {
 import { Helmet } from 'react-helmet';
 import PageShell from '../components/layout/PageShell';
 
-const staffMembers = [
-  { name: 'Bethany', image: require('../assets/staff-pics/DanaHeadshot.png') },
-  { name: 'Chelsea', image: require('../assets/staff-pics/GloriaHeadshot.png') },
-  { name: 'Dana', image: require('../assets/staff-pics/DanaHeadshot.png') },
-  { name: 'Gloria', image: require('../assets/staff-pics/GloriaHeadshot.png') },
-  { name: 'Kim', image: require('../assets/staff-pics/KimHeadshot.png') },
-  { name: 'Lisa', image: require('../assets/staff-pics/GloriaHeadshot.png') },
-  { name: 'Libby', image: require('../assets/staff-pics/KimHeadshot.png') },
-  { name: 'Rachel', image: require('../assets/staff-pics/DanaHeadshot.png') },
-  { name: 'Tracie', image: require('../assets/staff-pics/KimHeadshot.png') },
+// Staff without a headshot yet show their initial instead of a borrowed photo.
+const staffMembers: { name: string; image?: string }[] = [
+  { name: 'Bethany' },
+  { name: 'Chelsea' },
+  { name: 'Dana', image: require('../assets/staff-pics/DanaHeadshot.webp') },
+  { name: 'Gloria', image: require('../assets/staff-pics/GloriaHeadshot.webp') },
+  { name: 'Kim', image: require('../assets/staff-pics/KimHeadshot.webp') },
+  { name: 'Lisa' },
+  { name: 'Libby' },
+  { name: 'Rachel' },
+  { name: 'Tracie' },
 ];
 
-const StaffCard = ({ name, image }: { name: string; image: string }) => (
+const StaffCard = ({ name, image }: { name: string; image?: string }) => (
   <Card
     sx={{
       textAlign: 'center',
@@ -45,8 +46,11 @@ const StaffCard = ({ name, image }: { name: string; image: string }) => (
           height: { xs: 60, sm: 90, md: 100 },
           margin: 'auto',
           border: '2px solid #ddd',
+          fontSize: { xs: 24, sm: 36 },
         }}
-      />
+      >
+        {name.charAt(0)}
+      </Avatar>
       <Typography
         variant="body1"
         sx={{ marginTop: 2, fontSize: { xs: '0.9rem', sm: '1rem' } }}
@@ -110,7 +114,7 @@ const TeamPage = () => {
             <Grid item xs={12} md={4}>
               <Box
                 component="img"
-                src={require('../assets/JoeHeadshot1x1.png')}
+                src={require('../assets/JoeHeadshot1x1.webp')}
                 alt="Dr. Joe Rietow"
                 sx={{
                   width: '100%',
@@ -121,7 +125,7 @@ const TeamPage = () => {
                   cursor: 'pointer',
                 }}
                 onClick={() =>
-                  setModalImage(require('../assets/JoeHeadshot1x1.png'))
+                  setModalImage(require('../assets/JoeHeadshot1x1.webp'))
                 }
               />
             </Grid>
@@ -160,13 +164,14 @@ const TeamPage = () => {
             }}
           >
             {[...Array(4)].map((_, i) => {
-              const src = require(`../assets/joe-with-family/image${i + 1}.png`);
+              const src = require(`../assets/joe-with-family/image${i + 1}.webp`);
               return (
                 <Box
                   key={`fam-${i}`}
                   component="img"
                   src={src}
-                  alt={`With Family ${i + 1}`}
+                  alt="Dr. Joe Rietow with his family"
+                  loading="lazy"
                   onClick={() => setModalImage(src)}
                   sx={{
                     borderRadius: 2,
@@ -209,13 +214,14 @@ const TeamPage = () => {
             }}
           >
             {[...Array(3)].map((_, i) => {
-              const src = require(`../assets/joe-with-patient/image${i + 1}.png`);
+              const src = require(`../assets/joe-with-patient/image${i + 1}.webp`);
               return (
                 <Box
                   key={`patient-${i}`}
                   component="img"
                   src={src}
-                  alt={`With Patient ${i + 1}`}
+                  alt="Dr. Joe Rietow with a young patient"
+                  loading="lazy"
                   onClick={() => setModalImage(src)}
                   sx={{
                     borderRadius: 2,
@@ -247,13 +253,14 @@ const TeamPage = () => {
             }}
           >
             {[...Array(5)].map((_, i) => {
-              const src = require(`../assets/joe-with-staff/image${i + 1}.png`);
+              const src = require(`../assets/joe-with-staff/image${i + 1}.webp`);
               return (
                 <Box
                   key={`staff-pic-${i}`}
                   component="img"
                   src={src}
-                  alt={`With Staff ${i + 1}`}
+                  alt="Dr. Joe Rietow with the office team"
+                  loading="lazy"
                   onClick={() => setModalImage(src)}
                   sx={{
                     borderRadius: 2,

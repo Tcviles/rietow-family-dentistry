@@ -29,14 +29,14 @@ function Footer() {
             {/* Right Text */}
             <Box sx={{ color: '#9c9c9c', textAlign: { xs: 'left', sm: 'right' } }}>
                 <Typography sx={{ fontSize: '13px' }}>
-                    © 2024 All Rights Reserved
+                    © {new Date().getFullYear()} All Rights Reserved
                 </Typography>
                 <Typography sx={{ fontSize: '13px' }}>
                     Developed and maintained by{' '}
                     <Link
                         href="https://tviles.com"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         sx={{ color: 'white', textDecoration: 'none' }}
                     >
                         Tcviles

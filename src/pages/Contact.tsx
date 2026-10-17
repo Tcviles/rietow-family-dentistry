@@ -48,11 +48,12 @@ const ContactPage = () => {
             <Button
               href="https://www.google.com/maps/@39.6335357,-86.1572251,3a,75y,87.39h,90t/data=!3m7!1e1!3m5!1sAF1QipMb9Qw4xjRy78_4KfVzN--I1jT799Tkoq0Lmq1O!2e10!3e12!7i5576!8i2788?hl=en&authuser=0&coh=205409&entry=ttu"
               target="_blank"
+              rel="noopener noreferrer"
               sx={{ display: 'block', width: '100%' }}
             >
               <Box
                 component="img"
-                src={require('../assets/VirtualTour.png')}
+                src={require('../assets/VirtualTour.webp')}
                 alt="Virtual Tour of the dental office"
                 sx={{
                   width: '100%',

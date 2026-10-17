@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import PageShell from '../components/layout/PageShell';
+import { contactInfo } from '../data/contactInfo';
 
 const MembershipCard = ({
   title,
@@ -79,6 +80,7 @@ const MembershipCard = ({
         <Button
           variant="contained"
           fullWidth
+          href={contactInfo.phoneLink}
           sx={{
             backgroundColor: '#c00',
             color: '#fff',
@@ -88,7 +90,7 @@ const MembershipCard = ({
             ':hover': { backgroundColor: '#900' },
           }}
         >
-          SIGN UP NOW!
+          Call to Sign Up
         </Button>
       </CardContent>
     </Card>
@@ -213,6 +215,13 @@ const InsurancePage = () => {
     <>
       <Helmet>
         <title>Dental Membership Plans | Rietow Family Dentistry</title>
+        <meta
+          name="description"
+          content="No insurance? Rietow Family Dentistry's Friendly Smile membership plans include cleanings, exams, x-rays, an emergency visit, and 20% off treatment in Greenwood, IN."
+        />
+        <meta property="og:title" content="Dental Membership Plans | Rietow Family Dentistry" />
+        <meta property="og:url" content="https://www.rietowfamilydentistry.com/discount" />
+        <link rel="canonical" href="https://www.rietowfamilydentistry.com/discount" />
       </Helmet>
 
       <PageShell title="Membership Discount Plans">

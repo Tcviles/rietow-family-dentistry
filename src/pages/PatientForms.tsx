@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import PageShell from '../components/layout/PageShell';
+import { Link as RouterLink } from 'react-router-dom';
 import { routes } from '../data/routes';
 
 function PatientFormsPage() {
@@ -20,7 +21,7 @@ function PatientFormsPage() {
           <Typography paragraph>
             We are currently updating our online forms. Please call our office and we can help you complete everything before your visit.
           </Typography>
-          <Button variant="contained" href={routes.contact}>
+          <Button variant="contained" component={RouterLink} to={routes.contact}>
             Contact Our Office
           </Button>
         </Box>

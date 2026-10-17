@@ -9,6 +9,7 @@ function OfficeInfo() {
     addressLine1,
     addressLine2,
     phone,
+    phoneLink,
     email,
   } = contactInfo;
 
@@ -27,7 +28,7 @@ function OfficeInfo() {
       <Box sx={{ mb: 3, textAlign: 'center' }}>
         <Box
           component="img"
-          src={require('../../assets/r2-01.jpg')}
+          src={require('../../assets/r2-01.webp')}
           alt="Rietow Family Dentistry"
           sx={{ maxHeight: 60, width: 'auto', objectFit: 'contain' }}
         />
@@ -51,6 +52,7 @@ function OfficeInfo() {
         <Link
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${addressLine1}, ${addressLine2}`)}`}
           target="_blank"
+          rel="noopener noreferrer"
           underline="hover"
           sx={{ color: 'text.primary' }}
         >
@@ -70,7 +72,7 @@ function OfficeInfo() {
           Phone
         </Typography>
         <Link
-          href={`tel:${phone}`}
+          href={phoneLink}
           underline="hover"
           sx={{ color: 'text.primary' }}
         >

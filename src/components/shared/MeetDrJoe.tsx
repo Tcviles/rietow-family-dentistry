@@ -1,5 +1,6 @@
 import { Grid, Button, Typography } from '@mui/material';
 import content from '../../content';
+import { Link as RouterLink } from 'react-router-dom';
 import { routes } from '../../data/routes';
 
 function MeetDrJoe() {
@@ -52,7 +53,8 @@ function MeetDrJoe() {
       {/* CTA Button */}
       <Grid item sx={{ width: '100%' }}>
         <Button
-          href={routes.team}
+          component={RouterLink}
+          to={routes.team}
           sx={{
             backgroundColor: '#999',
             color: 'white',

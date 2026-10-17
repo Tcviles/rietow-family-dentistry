@@ -86,7 +86,7 @@ export default function Navbar() {
             <Link to="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
               <Box
                 component="img"
-                src={require('../../../assets/NavbarLogo.jpg')}
+                src={require('../../../assets/NavbarLogo.webp')}
                 alt="Rietow Family Dentistry"
                 sx={{
                   height: { xs: 44, md: 64 },

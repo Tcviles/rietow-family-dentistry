@@ -8,7 +8,9 @@ import {
   FormControlLabel,
   Typography,
 } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import { routes } from '../data/routes';
+import { contactInfo } from '../data/contactInfo';
 
 type InquiryFields =
   | 'kids'
@@ -49,6 +51,7 @@ const initialFormState: ContactFormState = {
 
 const ContactForm: React.FC = () => {
   const [form, setForm] = useState<ContactFormState>(initialFormState);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -69,10 +72,24 @@ const ContactForm: React.FC = () => {
     }));
   };
 
+  // Until a form backend exists, hand the request to the patient's email app
+  // so it actually reaches the office.
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log('Submitted form:', form);
-    // TODO: Add backend/form handler integration here
+    const services = (Object.keys(form.inquiries) as InquiryFields[])
+      .filter((field) => form.inquiries[field])
+      .map((field) => field.charAt(0).toUpperCase() + field.slice(1));
+    const body = [
+      `Name: ${form.firstName} ${form.lastName}`,
+      `Email: ${form.email}`,
+      `Phone: ${form.phone || 'Not provided'}`,
+      `Interested in: ${services.length ? services.join(', ') : 'Not specified'}`,
+      '',
+      form.notes,
+    ].join('\n');
+    const subject = `Appointment request from ${form.firstName} ${form.lastName}`;
+    window.location.href = `mailto:${contactInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitted(true);
   };
 
   const group1: InquiryFields[] = ['kids', 'cleaning', 'fillings', 'extractions'];
@@ -187,8 +204,16 @@ const ContactForm: React.FC = () => {
               {/* Submit button */}
               <Grid item xs={12}>
                 <Button type="submit" variant="contained">
-                  Submit
+                  Send Request
                 </Button>
+                {submitted && (
+                  <Typography variant="body2" sx={{ mt: 2 }}>
+                    Your email app should open with your request filled in — just press send.
+                    If nothing opened, email us at{' '}
+                    <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a> or call{' '}
+                    <a href={contactInfo.phoneLink}>{contactInfo.phone}</a>.
+                  </Typography>
+                )}
               </Grid>
             </Grid>
           </form>
@@ -200,12 +225,13 @@ const ContactForm: React.FC = () => {
             Pay Your Bills Online
           </Typography>
           <Typography variant="body2" sx={{ mb: 2 }}>
-            You will be directed to a new page.
+            Questions about a bill? We're happy to help.
           </Typography>
           <Button
             variant="contained"
             color="primary"
-            href={routes.pay}
+            component={RouterLink}
+            to={routes.pay}
             fullWidth
           >
             Pay Online

@@ -7,11 +7,12 @@ import {
   Grid,
   Stack,
   Typography,
-  useTheme,
 } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import content from '../content';
 import { routes } from '../data/routes';
+import { contactInfo } from '../data/contactInfo';
 
 // Optional icons
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
@@ -19,8 +20,6 @@ import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import SentimentSatisfiedAltOutlinedIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 
 const HomePage = () => {
-  const theme = useTheme();
-
   return (
     <>
       <Helmet>
@@ -64,15 +63,15 @@ const HomePage = () => {
                   </Typography>
 
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
-                    <Button variant="contained" size="large" href={routes.contact}>
+                    <Button variant="contained" size="large" component={RouterLink} to={routes.contact}>
                       Request Appointment
                     </Button>
                     <Button
                       variant="outlined"
                       size="large"
-                      href="tel:3178887576"
+                      href={contactInfo.phoneLink}
                     >
-                      Call (317) 888-7576
+                      Call {contactInfo.phone}
                     </Button>
                   </Stack>
 
@@ -102,7 +101,7 @@ const HomePage = () => {
               <Grid item xs={12} md={6}>
                 <Box
                   component="img"
-                  src={require('../assets/JoeInfrontOfOffice.png')}
+                  src={require('../assets/JoeInfrontOfOffice.webp')}
                   alt="Dr. Joe Rietow in front of dental office"
                   sx={{
                     width: '100%',
@@ -150,7 +149,7 @@ const HomePage = () => {
                 {/* <Grid item xs={12} md={5}>
                   <Box
                     component="img"
-                    src={require('../assets/JoeInfrontOfOffice.png')}
+                    src={require('../assets/JoeInfrontOfOffice.webp')}
                     alt="Rietow Family Dentistry office"
                     sx={{
                       width: '100%',
