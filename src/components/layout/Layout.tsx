@@ -1,6 +1,8 @@
 // src/components/layout/Layout.tsx
 import { ReactNode } from 'react';
 import { Box } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import { routes } from '../../data/routes';
 import Navbar from './Navbar/Navbar';
 import TopFooter from './TopFooter';
 import Footer from './Footer';
@@ -11,6 +13,8 @@ type LayoutProps = {
 };
 
 const Layout = ({ children }: LayoutProps) => {
+  // The contact page already shows hours, address, and a map
+  const { pathname } = useLocation();
   return (
     <>
       <Navbar />
@@ -20,7 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
 
       {children}
 
-      <TopFooter />
+      {pathname !== routes.contact && <TopFooter />}
       <Footer />
     </>
   );

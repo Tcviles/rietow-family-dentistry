@@ -1,4 +1,4 @@
-import { Grid, Link, Typography, Box } from '@mui/material';
+import { Box, Button, Grid, Link, Typography } from '@mui/material';
 import RoomIcon from '@mui/icons-material/Room';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -12,6 +12,7 @@ function OfficeInfo() {
     phoneLink,
     email,
   } = contactInfo;
+  const mapsQuery = encodeURIComponent(`${addressLine1}, ${addressLine2}`);
 
   return (
     <Box
@@ -49,16 +50,30 @@ function OfficeInfo() {
         <Typography variant="subtitle2" fontWeight={600}>
           Address
         </Typography>
-        <Link
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${addressLine1}, ${addressLine2}`)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          underline="hover"
-          sx={{ color: 'text.primary' }}
-        >
-          <Typography variant="body2">{addressLine1}</Typography>
-          <Typography variant="body2">{addressLine2}</Typography>
-        </Link>
+        <Typography variant="body2">{addressLine1}</Typography>
+        <Typography variant="body2">{addressLine2}</Typography>
+        <Box sx={{ display: 'flex', gap: 1, mt: 1, flexWrap: 'wrap' }}>
+          <Button
+            size="small"
+            variant="outlined"
+            href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ textTransform: 'none', py: 0.25 }}
+          >
+            Google Maps
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            href={`https://maps.apple.com/?q=${encodeURIComponent('Rietow Family Dentistry')}&address=${mapsQuery}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ textTransform: 'none', py: 0.25 }}
+          >
+            Apple Maps
+          </Button>
+        </Box>
       </Box>
     </Box>
   </Grid>

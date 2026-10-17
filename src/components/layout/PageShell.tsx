@@ -10,7 +10,7 @@ type PageShellProps = {
 
 function PageShell({ title, children, paperSx }: PageShellProps) {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ py: { xs: 3, md: 5 } }}>
       <Paper
         elevation={3}
         sx={{
