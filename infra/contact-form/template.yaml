@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Rietow Family Dentistry website contact form (API Gateway + Lambda + SES)
+
+Parameters:
+  Domain:
+    Type: String
+    Default: rietowfamilydentistry.com
+  ToEmail:
+    Type: String
+    Default: info@rietowfamilydentistry.com
+    Description: Where contact form submissions are delivered
+  FromEmail:
+    Type: String
+    Default: website@rietowfamilydentistry.com
+    Description: Sender address; must be on the verified SES domain
+
+Resources:
+  # Verifies the domain with SES. Add the three DKIM CNAME records from the
+  # stack outputs to the domain's DNS (GoDaddy) to complete verification.
+  DomainIdentity:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      EmailIdentity: !Ref Domain
+      DkimSigningAttributes:
+        NextSigningKeyLength: RSA_2048_BIT
+
+  ContactApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - !Sub https://www.${Domain}
+          - !Sub https://${Domain}
+          - http://localhost:3000
+        AllowMethods: [POST]
+        AllowHeaders: [content-type]
+        MaxAge: 600
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 5
+        ThrottlingRateLimit: 1
+
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: index.handler
+      Runtime: nodejs22.x
+      Architectures: [arm64]
+      MemorySize: 256
+      Timeout: 10
+      Environment:
+        Variables:
+          TO_EMAIL: !Ref ToEmail
+          FROM_EMAIL: !Ref FromEmail
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: ses:SendEmail
+              Resource:
+                - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${Domain}
+                - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/${ToEmail}
+      LoggingConfig:
+        LogGroup: !Ref ContactFunctionLogs
+      Events:
+        Submit:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ContactApi
+            Method: POST
+            Path: /contact
+
+  ContactFunctionLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/rietow-contact-form
+      RetentionInDays: 30
+
+Outputs:
+  ContactUrl:
+    Description: Set REACT_APP_CONTACT_API_URL to this value
+    Value: !Sub https://${ContactApi}.execute-api.${AWS::Region}.amazonaws.com/contact
+  DkimRecord1:
+    Description: CNAME record to add in GoDaddy DNS
+    Value: !Sub ${DomainIdentity.DkimDNSTokenName1} -> ${DomainIdentity.DkimDNSTokenValue1}
+  DkimRecord2:
+    Description: CNAME record to add in GoDaddy DNS
+    Value: !Sub ${DomainIdentity.DkimDNSTokenName2} -> ${DomainIdentity.DkimDNSTokenValue2}
+  DkimRecord3:
+    Description: CNAME record to add in GoDaddy DNS
+    Value: !Sub ${DomainIdentity.DkimDNSTokenName3} -> ${DomainIdentity.DkimDNSTokenValue3}

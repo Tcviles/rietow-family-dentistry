@@ -1,0 +1,11 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "rietow-contact-form"
+
+[default.deploy.parameters]
+region = "us-east-1"
+profile = "rietow"
+capabilities = "CAPABILITY_IAM"
+resolve_s3 = true
+confirm_changeset = true
