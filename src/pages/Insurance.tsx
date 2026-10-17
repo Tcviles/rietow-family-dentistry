@@ -99,7 +99,7 @@ const planCards = [
       '1 Panoramic Radiograph',
       'Any Additional X-rays',
       '1 Emergency Office Visit',
-      'Average savings of $4000 + Unlimited savings with treatment needs',
+      'Average savings of $400 + Unlimited savings with treatment needs',
     ],
   },
   {
@@ -177,7 +177,7 @@ const comparisonData = [
   {
     label: 'Average Savings',
     child: '$350+',
-    adult: '$4000+',
+    adult: '$400+',
     perio: '$400+',
   },
 ];
