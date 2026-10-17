@@ -1,0 +1,11 @@
+{
+  "Name": "rietow-html",
+  "Comment": "Browsers revalidate HTML on every visit; security headers",
+  "CustomHeadersConfig": { "Quantity": 1, "Items": [ { "Header": "Cache-Control", "Value": "no-cache", "Override": true } ] },
+  "SecurityHeadersConfig": {
+    "StrictTransportSecurity": { "Override": true, "AccessControlMaxAgeSec": 31536000, "IncludeSubdomains": false, "Preload": false },
+    "ContentTypeOptions": { "Override": true },
+    "FrameOptions": { "Override": true, "FrameOption": "SAMEORIGIN" },
+    "ReferrerPolicy": { "Override": true, "ReferrerPolicy": "strict-origin-when-cross-origin" }
+  }
+}

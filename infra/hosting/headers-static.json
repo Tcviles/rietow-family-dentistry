@@ -1,0 +1,11 @@
+{
+  "Name": "rietow-static",
+  "Comment": "Content-hashed build files under /static are cached for a year; security headers",
+  "CustomHeadersConfig": { "Quantity": 1, "Items": [ { "Header": "Cache-Control", "Value": "public, max-age=31536000, immutable", "Override": true } ] },
+  "SecurityHeadersConfig": {
+    "StrictTransportSecurity": { "Override": true, "AccessControlMaxAgeSec": 31536000, "IncludeSubdomains": false, "Preload": false },
+    "ContentTypeOptions": { "Override": true },
+    "FrameOptions": { "Override": true, "FrameOption": "SAMEORIGIN" },
+    "ReferrerPolicy": { "Override": true, "ReferrerPolicy": "strict-origin-when-cross-origin" }
+  }
+}

@@ -24,3 +24,4 @@ yarn-error.log*
 
 # AWS SAM build output
 .aws-sam/
+infra/hosting/backup-*.json

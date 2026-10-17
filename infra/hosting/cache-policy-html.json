@@ -1,0 +1,14 @@
+{
+  "Name": "rietow-html-5min",
+  "Comment": "HTML and other unhashed files: edge caches for at most 5 minutes so deploys show up quickly",
+  "MinTTL": 0,
+  "DefaultTTL": 300,
+  "MaxTTL": 300,
+  "ParametersInCacheKeyAndForwardedToOrigin": {
+    "EnableAcceptEncodingGzip": true,
+    "EnableAcceptEncodingBrotli": true,
+    "HeadersConfig": { "HeaderBehavior": "none" },
+    "CookiesConfig": { "CookieBehavior": "none" },
+    "QueryStringsConfig": { "QueryStringBehavior": "none" }
+  }
+}
