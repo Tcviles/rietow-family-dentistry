@@ -1,39 +1,104 @@
-import { useState, useEffect, useRef } from 'react';
-import {
-  Box,
-  Typography,
-} from '@mui/material';
+import { useEffect, useRef } from 'react';
+import { Box, Button, Card, CardActionArea, Chip, Container, Grid, Stack, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Helmet } from 'react-helmet';
+import { useSearchParams } from 'react-router-dom';
 import content from '../content';
+import { ServiceCategory } from '../content/types';
 import ServicesDetail from '../components/services/ServicesDetail';
-import PageShell from '../components/layout/PageShell';
+import PageBanner from '../components/layout/PageBanner';
+import RichText from '../components/shared/RichText';
+import Reveal from '../components/shared/Reveal';
+import { NAVBAR_HEIGHT } from '../components/layout/Navbar/navConstants';
+
+const { intro, servicesContent } = content.servicesPage;
+
+// Overview: every category as a compact, tappable card
+function CategoryGrid({ onSelect }: { onSelect: (category: ServiceCategory) => void }) {
+  return (
+    <Grid container spacing={2}>
+      {servicesContent.map((category, i) => {
+        const { id, title, icon: Icon, services } = category;
+        return (
+          <Grid item xs={12} sm={6} md={4} key={id}>
+            <Reveal delay={(i % 3) * 80}>
+              <Card
+                sx={{
+                  height: '100%',
+                  borderRadius: 3,
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  '&:hover': { transform: 'translateY(-3px)', boxShadow: 5 },
+                }}
+              >
+                <CardActionArea onClick={() => onSelect(category)} sx={{ height: '100%', p: 2.5 }}>
+                  <Stack direction="row" spacing={2} alignItems="center">
+                    <Box
+                      sx={{
+                        flexShrink: 0,
+                        width: 48,
+                        height: 48,
+                        borderRadius: 2,
+                        display: 'grid',
+                        placeItems: 'center',
+                        bgcolor: 'rgba(189, 25, 25, 0.08)',
+                        color: '#BD1919',
+                      }}
+                    >
+                      <Icon />
+                    </Box>
+                    <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontWeight: 700 }}>{title}</Typography>
+                      <Typography variant="body2" color="text.secondary" noWrap>
+                        {services.length > 1
+                          ? services.map((s) => s.title.replace(/ \(.*\)$/, '')).join(' · ')
+                          : 'Learn more'}
+                      </Typography>
+                    </Box>
+                    <ChevronRightIcon sx={{ color: 'text.disabled' }} />
+                  </Stack>
+                </CardActionArea>
+              </Card>
+            </Reveal>
+          </Grid>
+        );
+      })}
+    </Grid>
+  );
+}
 
 function ServicesPage() {
-  const { heading, servicesContent } = content.servicesPage;
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
-  const detailRef = useRef<HTMLDivElement>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const topRef = useRef<HTMLDivElement>(null);
+  const activeChipRef = useRef<HTMLDivElement>(null);
 
-  const handleSelectCategory = (selectedId: string) => {
-    const selectedCategoryObj = servicesContent.find(cat => cat.id === selectedId) || null;
-    setSelectedCategory(selectedCategoryObj?.id || null);
-    setSelectedService(selectedCategoryObj?.services[0].id || null);
+  // The URL is the source of truth, so links like /services?category=routine work
+  // and the browser back button steps back through what the visitor looked at.
+  const category = servicesContent.find((c) => c.id === searchParams.get('category'));
+  const service = category?.services.find((s) => s.id === searchParams.get('service')) ?? category?.services[0];
+
+  const select = (categoryId: string, serviceId?: string) => {
+    setSearchParams(serviceId ? { category: categoryId, service: serviceId } : { category: categoryId });
   };
 
+  // Scroll to the top of the content and keep the active category chip visible
   useEffect(() => {
-    if (servicesContent.length === 1) {
-      const firstCat = servicesContent[0];
-      setSelectedCategory(firstCat.id);
-      setSelectedService(firstCat.services[0].id);
+    if (!category) return;
+    const navOffset = window.innerWidth >= 900 ? NAVBAR_HEIGHT.md : NAVBAR_HEIGHT.xs;
+    const top = topRef.current;
+    if (top) {
+      const y = top.getBoundingClientRect().top + window.scrollY - navOffset;
+      if (window.scrollY > y) window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  }, [servicesContent]);
-
-  const selectedCategoryObj = servicesContent.find(cat => cat.id === selectedCategory);
+    activeChipRef.current?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+  }, [category, service]);
 
   return (
     <>
       <Helmet>
-        <title>Dental Services | Rietow Family Dentistry in Greenwood, IN</title>
+        <title>
+          {service ? `${service.title} | ` : ''}Dental Services | Rietow Family Dentistry in Greenwood, IN
+        </title>
         <meta
           name="description"
           content="Explore comprehensive family and cosmetic dental services at Rietow Family Dentistry in Greenwood, IN. Learn about cleanings, fillings, implants, and more."
@@ -48,121 +113,152 @@ function ServicesPage() {
         <link rel="canonical" href="https://www.rietowfamilydentistry.com/services" />
       </Helmet>
 
-      <PageShell title={heading}>
-          {/* Category Selector */}
-          {servicesContent.length > 1 && (
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: '1fr 1fr',
-                  sm: '1fr 1fr',
-                  md: '1fr 1fr 1fr',
-                  lg: 'repeat(6, 1fr)',
-                },
-                gap: 3,
-                mb: 4,
-              }}
-            >
-              {servicesContent.map(({ title, icon: Icon, id }) => (
-                <Box
-                  key={id}
-                  onClick={() => {
-                    handleSelectCategory(id);
-                    setTimeout(() => {
-                      if (detailRef.current) {
-                        const yOffset = -130;
-                        const y = detailRef.current.getBoundingClientRect().top + window.scrollY + yOffset;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                      }
-                    }, 0);
-                  }}
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: selectedCategory === id ? '#dff6fc' : '#f5f5f5',
-                    padding: 2,
-                    borderRadius: 1,
-                    cursor: 'pointer',
-                    minHeight: 80,
-                    transition: '0.2s ease-in-out',
-                    '&:hover': {
-                      boxShadow: 1,
-                      backgroundColor: '#ebebeb',
-                    },
-                  }}
-                >
-                  <Icon sx={{ fontSize: 24, color: '#555', mb: 0.5 }} />
-                  <Typography variant="caption" align="center" fontWeight={500}>
-                    {title}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          )}
+      <PageBanner
+        title="Our Services"
+        subtitle="Honest, compassionate, and experienced care for every member of your family."
+        image={require('../assets/joe-with-patient/image2.webp')}
+        position="center 40%"
+        tall
+      />
 
-          <Box ref={detailRef} />
+      <Box ref={topRef} />
 
-          {/* Service Buttons */}
-          {selectedCategoryObj && selectedCategoryObj.services.length > 1 && (
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: {
-                  xs: '1fr',
-                  sm: '1fr 1fr',
-                  md: '1fr 1fr 1fr',
-                  lg: 'repeat(8, 1fr)',
-                },
-                gap: 2,
-                mb: 3,
-              }}
-            >
-              {selectedCategoryObj.services.map(({ id, title, icon: Icon }) => (
-                <Box
-                  key={id}
-                  onClick={() => {
-                    setSelectedService(id);
-                  }}
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: selectedService === id ? '#333' : '#444',
-                    color: '#fff',
-                    padding: 2,
-                    borderRadius: 1,
-                    cursor: 'pointer',
-                    transition: '0.2s ease-in-out',
-                    '&:hover': {
-                      backgroundColor: '#222',
-                    },
-                  }}
-                >
-                  <Icon sx={{ fontSize: 24, color: '#fff', mb: 0.5 }} />
-                  <Typography variant="caption" align="center" fontWeight={400}>
-                    {title}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          )}
-
-          {/* Service Detail */}
+      {!category || !service ? (
+        <Container maxWidth="lg" sx={{ py: { xs: 4, md: 7 } }}>
+          <Box sx={{ maxWidth: 820, mx: 'auto', mb: { xs: 4, md: 6 }, textAlign: { md: 'center' } }}>
+            <RichText text={intro} />
+          </Box>
+          <CategoryGrid onSelect={(c) => select(c.id)} />
+        </Container>
+      ) : (
+        <>
+          {/* Phones/tablets: sticky, swipeable category bar */}
           <Box
             sx={{
-              backgroundColor: '#f9f9f9',
-              borderRadius: 2,
-              px: { xs: 2, md: 4 },
-              py: 3,
+              display: { xs: 'block', md: 'none' },
+              position: 'sticky',
+              top: NAVBAR_HEIGHT.xs,
+              zIndex: 2,
+              bgcolor: 'background.paper',
+              borderBottom: '1px solid',
+              borderColor: 'divider',
             }}
           >
-            <ServicesDetail selectedService={selectedService} />
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{ overflowX: 'auto', px: 2, py: 1.5, scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
+            >
+              {servicesContent.map((c) => (
+                <Box key={c.id} ref={c.id === category.id ? activeChipRef : undefined} sx={{ flexShrink: 0 }}>
+                  <Chip
+                    icon={<c.icon fontSize="small" />}
+                    label={c.title}
+                    onClick={() => select(c.id)}
+                    color={c.id === category.id ? 'primary' : 'default'}
+                    variant={c.id === category.id ? 'filled' : 'outlined'}
+                  />
+                </Box>
+              ))}
+            </Stack>
           </Box>
-      </PageShell>
+
+          <Container maxWidth="lg" sx={{ py: { xs: 3, md: 6 } }}>
+            <Grid container spacing={{ xs: 3, md: 5 }}>
+              {/* Desktop: sticky sidebar of all categories */}
+              <Grid item md={4} lg={3.5} sx={{ display: { xs: 'none', md: 'block' } }}>
+                <Card sx={{ position: 'sticky', top: NAVBAR_HEIGHT.md + 24, borderRadius: 3, p: 1.5 }}>
+                  <Button
+                    startIcon={<ArrowBackIcon />}
+                    onClick={() => setSearchParams({})}
+                    sx={{ mb: 1, textTransform: 'none' }}
+                  >
+                    All services
+                  </Button>
+                  {servicesContent.map((c) => {
+                    const active = c.id === category.id;
+                    return (
+                      <Box key={c.id}>
+                        <Button
+                          fullWidth
+                          startIcon={<c.icon />}
+                          onClick={() => select(c.id)}
+                          sx={{
+                            justifyContent: 'flex-start',
+                            textTransform: 'none',
+                            fontSize: '0.95rem',
+                            fontWeight: active ? 700 : 500,
+                            color: active ? '#BD1919' : 'text.primary',
+                            bgcolor: active ? 'rgba(189, 25, 25, 0.08)' : 'transparent',
+                            borderRadius: 2,
+                            px: 1.5,
+                            py: 1,
+                          }}
+                        >
+                          {c.title}
+                        </Button>
+                        {active && c.services.length > 1 && (
+                          <Stack sx={{ pl: 5.5, py: 0.5 }}>
+                            {c.services.map((s) => (
+                              <Button
+                                key={s.id}
+                                size="small"
+                                onClick={() => select(c.id, s.id)}
+                                sx={{
+                                  justifyContent: 'flex-start',
+                                  textTransform: 'none',
+                                  color: s.id === service.id ? '#BD1919' : 'text.secondary',
+                                  fontWeight: s.id === service.id ? 700 : 400,
+                                  borderLeft: '2px solid',
+                                  borderColor: s.id === service.id ? '#BD1919' : 'grey.200',
+                                  borderRadius: 0,
+                                  pl: 1.5,
+                                }}
+                              >
+                                {s.title}
+                              </Button>
+                            ))}
+                          </Stack>
+                        )}
+                      </Box>
+                    );
+                  })}
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} md={8} lg={8.5}>
+                {/* Phones/tablets: services within the chosen category */}
+                {category.services.length > 1 && (
+                  <Box sx={{ display: { xs: 'flex', md: 'none' }, flexWrap: 'wrap', gap: 1, mb: 3 }}>
+                    {category.services.map((s) => (
+                      <Chip
+                        key={s.id}
+                        label={s.title}
+                        onClick={() => select(category.id, s.id)}
+                        color={s.id === service.id ? 'primary' : 'default'}
+                        variant={s.id === service.id ? 'filled' : 'outlined'}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+                )}
+
+                <Card sx={{ borderRadius: 3, p: { xs: 2.5, md: 5 } }}>
+                  <ServicesDetail key={service.id} service={service} />
+                </Card>
+
+                <Button
+                  startIcon={<ArrowBackIcon />}
+                  onClick={() => setSearchParams({})}
+                  sx={{ mt: 3, display: { md: 'none' } }}
+                >
+                  All services
+                </Button>
+              </Grid>
+            </Grid>
+          </Container>
+        </>
+      )}
     </>
   );
 }
