@@ -16,7 +16,9 @@ import {
 } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import PageShell from '../components/layout/PageShell';
+import { Link as RouterLink } from 'react-router-dom';
 import { contactInfo } from '../data/contactInfo';
+import { routes } from '../data/routes';
 
 const MembershipCard = ({
   title,
@@ -225,20 +227,26 @@ const InsurancePage = () => {
       </Helmet>
 
       <PageShell title="Membership Discount Plans">
-          <Box sx={{ mb: 5 }}>
-            <Typography paragraph>
-              <strong>Rietow Family Dentistry’s exclusive Friendly Smile Dental Membership</strong> is for new patients and current patients alike who are not currently covered by dental insurance.
+          <Box sx={{ mb: 5, '& a': { color: 'primary.main', fontWeight: 600 } }}>
+            <Typography paragraph sx={{ lineHeight: 1.8 }}>
+              <strong>Rietow Family Dentistry’s exclusive Friendly Smile Dental Membership</strong> is for{' '}
+              <RouterLink to={routes.contact}>new patients</RouterLink> and current patients alike, not currently
+              covered by dental insurance. Our membership plans allow for a complete continuation of{' '}
+              <RouterLink to={`${routes.services}?category=routine`}>preventative care</RouterLink>. This provides a
+              helpful solution for those who do not currently have dental insurance.
             </Typography>
-            <Typography paragraph>
-              Our dental membership plans offer an affordable, hassle-free way for you and your family to receive the care you need. Each includes exams, cleanings, x-rays, and emergency visits—and much more.
-            </Typography>
-            <Typography paragraph>
-              <strong>Contact us today!</strong>
+            <Typography paragraph sx={{ lineHeight: 1.8 }}>
+              Our dental membership plans offer an affordable, hassle-free way for you and your family to receive the
+              dental care you need. Dental treatment costs can add up, especially if you or your family members miss
+              your periodic dental check-ups. Each level of our <a href="#plans">membership program</a> includes 2
+              dental exams per year, and much more. We want you to take care of your teeth and enjoy the benefits of
+              good oral hygiene. It is our belief that our Membership plans can help facilitate a lifetime of
+              consistent dental care. <RouterLink to={routes.contact}>Contact us today!</RouterLink>
             </Typography>
           </Box>
 
           {/* Toggle Button */}
-          <Box textAlign="center" mb={4}>
+          <Box id="plans" textAlign="center" mb={4} sx={{ scrollMarginTop: 140 }}>
             <Button variant="outlined" onClick={() => setShowTable(!showTable)}>
               {showTable ? 'View Cards' : 'Compare Plans'}
             </Button>

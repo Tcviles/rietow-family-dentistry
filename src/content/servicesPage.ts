@@ -106,9 +106,7 @@ export const servicesPageContent: ServicesPageContent = {
                 title: 'How to Reach Us',
                 content: `
                   If you’re experiencing a dental emergency, don’t hesitate! Call us immediately at (317) 888-7576 to speak with our team. 
-                  We’ll guide you on the next steps and get you scheduled for your visit. 
-            
-                  For your convenience, we offer extended hours and weekend availability to accommodate your needs.
+                  We’ll guide you on the next steps and get you scheduled for your visit.
                 `
               },
               {
