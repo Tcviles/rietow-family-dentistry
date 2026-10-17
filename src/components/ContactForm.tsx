@@ -11,9 +11,12 @@ import {
   Typography,
 } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import { contactInfo } from '../data/contactInfo';
 
 const CONTACT_API_URL = process.env.REACT_APP_CONTACT_API_URL;
+// Turn on once the email domain is verified in SES (see infra/contact-form).
+const FORM_ENABLED = process.env.REACT_APP_CONTACT_FORM_ENABLED === 'true';
 
 const INQUIRIES = [
   'kids',
@@ -119,12 +122,27 @@ function ContactForm() {
       error={!!errors[name]}
       helperText={errors[name]}
       fullWidth
+      disabled={!FORM_ENABLED}
       {...props}
     />
   );
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
+      {!FORM_ENABLED && (
+        <Alert severity="info" sx={{ mb: 3 }}>
+          <strong>Online requests are still in progress.</strong> Please call us instead at{' '}
+          <Box component="span" sx={{ whiteSpace: 'nowrap' }}>
+            {contactInfo.phone}
+          </Box>{' '}
+          to schedule an appointment.
+          <Box sx={{ mt: 1.5 }}>
+            <Button variant="contained" size="small" href={contactInfo.phoneLink} startIcon={<PhoneInTalkOutlinedIcon />}>
+              Call {contactInfo.phone}
+            </Button>
+          </Box>
+        </Alert>
+      )}
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           {textField('firstName', 'First name', { required: true, autoComplete: 'given-name' })}
@@ -153,7 +171,11 @@ function ContactForm() {
               <FormControlLabel
                 key={inquiry}
                 control={
-                  <Checkbox checked={inquiries.includes(inquiry)} onChange={() => toggleInquiry(inquiry)} />
+                  <Checkbox
+                    checked={inquiries.includes(inquiry)}
+                    onChange={() => toggleInquiry(inquiry)}
+                    disabled={!FORM_ENABLED}
+                  />
                 }
                 label={label(inquiry)}
               />
@@ -195,7 +217,7 @@ function ContactForm() {
             type="submit"
             variant="contained"
             size="large"
-            disabled={status === 'sending'}
+            disabled={!FORM_ENABLED || status === 'sending'}
             startIcon={status === 'sending' ? <CircularProgress size={18} color="inherit" /> : undefined}
           >
             {status === 'sending' ? 'Sending…' : 'Send Request'}
