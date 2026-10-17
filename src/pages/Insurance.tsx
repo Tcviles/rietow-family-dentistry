@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Typography,
   Card,
-  CardContent,
+  Stack,
   Button,
   Grid,
   Paper,
@@ -14,6 +14,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
 import { Helmet } from 'react-helmet';
 import PageShell from '../components/layout/PageShell';
 import { Link as RouterLink } from 'react-router-dom';
@@ -28,76 +29,47 @@ const MembershipCard = ({
   title: string;
   price: number;
   features: string[];
-}) => {
-  return (
-    <Card
-      sx={{
-        width: { xs: '100%', sm: 300 },
-        border: '2px solid #333',
-        borderRadius: 0,
-        backgroundColor: '#ccc',
-        boxShadow: 'none',
-        textAlign: 'center',
-        mx: 'auto',
-      }}
-    >
-      <CardContent sx={{ backgroundColor: '#999', py: 2 }}>
-        <Typography
-          variant="subtitle1"
-          sx={{
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {title}
-        </Typography>
-      </CardContent>
-
-      <CardContent sx={{ backgroundColor: '#ccc', py: 3 }}>
-        <Typography variant="h4" sx={{ color: '#b00000', fontWeight: 'bold' }}>
-          ${price}.00
-        </Typography>
-        <Typography variant="subtitle2" sx={{ color: '#b00000', fontStyle: 'italic' }}>
-          Annually
-        </Typography>
-      </CardContent>
-
-      <CardContent sx={{ backgroundColor: '#ccc', color: '#111', px: 3, pt: 0, pb: 2 }}>
-        {features.map((feature, index) => (
-          <Typography
-            key={index}
-            variant="body2"
-            sx={{
-              borderTop: '1px solid #aaa',
-              py: 1,
-            }}
-          >
-            {feature}
-          </Typography>
-        ))}
-      </CardContent>
-
-      <CardContent sx={{ backgroundColor: '#ccc', pt: 2 }}>
-        <Button
-          variant="contained"
-          fullWidth
-          href={contactInfo.phoneLink}
-          sx={{
-            backgroundColor: '#c00',
-            color: '#fff',
-            fontWeight: 'bold',
-            borderRadius: 0,
-            py: 1,
-            ':hover': { backgroundColor: '#900' },
-          }}
-        >
-          Call to Sign Up
-        </Button>
-      </CardContent>
-    </Card>
-  );
-};
+}) => (
+  <Card
+    sx={{
+      height: '100%',
+      boxSizing: 'border-box',
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: 3,
+      // Straight brand-colored bar along the top edge
+      backgroundImage: (t) => `linear-gradient(${t.palette.primary.main}, ${t.palette.primary.main})`,
+      backgroundSize: '100% 5px',
+      backgroundRepeat: 'no-repeat',
+      p: 3,
+      transition: 'transform 0.2s, box-shadow 0.2s',
+      '&:hover': { transform: 'translateY(-4px)', boxShadow: 6 },
+    }}
+  >
+    <Typography variant="h6" sx={{ fontWeight: 700 }}>
+      {title}
+    </Typography>
+    <Box sx={{ my: 2 }}>
+      <Typography component="span" sx={{ fontFamily: 'h4.fontFamily', fontSize: '2.4rem', fontWeight: 700, color: 'primary.main' }}>
+        ${price}
+      </Typography>
+      <Typography component="span" color="text.secondary" sx={{ ml: 0.5 }}>
+        / year
+      </Typography>
+    </Box>
+    <Stack spacing={1.25} sx={{ flexGrow: 1, mb: 3 }}>
+      {features.map((feature) => (
+        <Stack key={feature} direction="row" spacing={1} alignItems="flex-start">
+          <CheckIcon fontSize="small" color="primary" sx={{ mt: '2px' }} />
+          <Typography variant="body2">{feature}</Typography>
+        </Stack>
+      ))}
+    </Stack>
+    <Button variant="contained" size="large" fullWidth href={contactInfo.phoneLink}>
+      Call to Sign Up
+    </Button>
+  </Card>
+);
 
 const planCards = [
   {
@@ -257,22 +229,22 @@ const InsurancePage = () => {
             <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
               <Table size="small">
                 <TableHead>
-                  <TableRow sx={{ backgroundColor: '#444' }}>
-                    <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Feature</TableCell>
-                    <TableCell align="center" sx={{ color: '#fff', fontWeight: 'bold' }}>
+                  <TableRow sx={{ bgcolor: 'secondary.main' }}>
+                    <TableCell sx={{ color: 'common.white', fontWeight: 700 }}>Feature</TableCell>
+                    <TableCell align="center" sx={{ color: 'common.white', fontWeight: 700 }}>
                       Child
                     </TableCell>
-                    <TableCell align="center" sx={{ color: '#fff', fontWeight: 'bold' }}>
+                    <TableCell align="center" sx={{ color: 'common.white', fontWeight: 700 }}>
                       Adult
                     </TableCell>
-                    <TableCell align="center" sx={{ color: '#fff', fontWeight: 'bold' }}>
+                    <TableCell align="center" sx={{ color: 'common.white', fontWeight: 700 }}>
                       Perio
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {comparisonData.map((row, idx) => (
-                    <TableRow key={idx} sx={{ backgroundColor: idx % 2 ? '#f9f9f9' : '#e9e9e9' }}>
+                    <TableRow key={idx} sx={{ bgcolor: idx % 2 ? 'background.paper' : 'background.default' }}>
                       <TableCell>{row.label}</TableCell>
                       <TableCell align="center">{row.child}</TableCell>
                       <TableCell align="center">{row.adult}</TableCell>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Box, Button, Card, CardActionArea, Chip, Container, Grid, Stack, Typography } from '@mui/material';
+import { alpha, Box, Button, Card, CardActionArea, Chip, Container, Grid, Stack, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Helmet } from 'react-helmet';
@@ -41,8 +41,8 @@ function CategoryGrid({ onSelect }: { onSelect: (category: ServiceCategory) => v
                         borderRadius: 2,
                         display: 'grid',
                         placeItems: 'center',
-                        bgcolor: 'rgba(189, 25, 25, 0.08)',
-                        color: '#BD1919',
+                        bgcolor: (t) => alpha(t.palette.primary.main, 0.08),
+                        color: 'primary.main',
                       }}
                     >
                       <Icon />
@@ -188,8 +188,8 @@ function ServicesPage() {
                             textTransform: 'none',
                             fontSize: '0.95rem',
                             fontWeight: active ? 700 : 500,
-                            color: active ? '#BD1919' : 'text.primary',
-                            bgcolor: active ? 'rgba(189, 25, 25, 0.08)' : 'transparent',
+                            color: active ? 'primary.main' : 'text.primary',
+                            bgcolor: (t) => (active ? alpha(t.palette.primary.main, 0.08) : 'transparent'),
                             borderRadius: 2,
                             px: 1.5,
                             py: 1,
@@ -206,11 +206,12 @@ function ServicesPage() {
                                 onClick={() => select(c.id, s.id)}
                                 sx={{
                                   justifyContent: 'flex-start',
+                                  textAlign: 'left',
                                   textTransform: 'none',
-                                  color: s.id === service.id ? '#BD1919' : 'text.secondary',
+                                  color: s.id === service.id ? 'primary.main' : 'text.secondary',
                                   fontWeight: s.id === service.id ? 700 : 400,
                                   borderLeft: '2px solid',
-                                  borderColor: s.id === service.id ? '#BD1919' : 'grey.200',
+                                  borderColor: s.id === service.id ? 'primary.main' : 'divider',
                                   borderRadius: 0,
                                   pl: 1.5,
                                 }}

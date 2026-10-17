@@ -22,8 +22,7 @@ function PageShell({ title, children, paperSx }: PageShellProps) {
         <Typography
           variant="h4"
           sx={{
-            fontStyle: 'italic',
-            fontWeight: 600,
+            fontWeight: 700,
             mb: 1,
             textAlign: 'center',
           }}

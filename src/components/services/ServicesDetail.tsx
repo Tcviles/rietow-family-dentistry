@@ -76,7 +76,7 @@ function ServicesDetail({ service }: ServicesDetailProps) {
       ))}
 
       {/* Closing call to action */}
-      <Box sx={{ mt: 5, p: { xs: 2.5, md: 3 }, borderRadius: 3, bgcolor: 'grey.900', color: 'common.white' }}>
+      <Box sx={{ mt: 5, p: { xs: 2.5, md: 3 }, borderRadius: 3, bgcolor: 'secondary.main', color: 'common.white' }}>
         <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5 }}>
           Ready to get started?
         </Typography>

@@ -10,7 +10,7 @@ function TopFooter() {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        bgcolor: 'background.default',
         padding: 3,
         marginTop: 2,
       }}

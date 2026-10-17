@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material';
+import { alpha, Box, Button, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -71,11 +71,11 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
                 py: 1.25,
                 color: 'text.primary',
                 '&.Mui-selected': {
-                  bgcolor: 'rgba(189, 25, 25, 0.08)',
-                  color: '#BD1919',
-                  '& .MuiListItemIcon-root': { color: '#BD1919' },
+                  bgcolor: (t) => alpha(t.palette.primary.main, 0.08),
+                  color: 'primary.main',
+                  '& .MuiListItemIcon-root': { color: 'primary.main' },
                 },
-                '&.Mui-selected:hover': { bgcolor: 'rgba(189, 25, 25, 0.12)' },
+                '&.Mui-selected:hover': { bgcolor: (t) => alpha(t.palette.primary.main, 0.12) },
               }}
             >
               <ListItemIcon sx={{ minWidth: 40, color: 'text.secondary' }}>
@@ -89,7 +89,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
       </List>
 
       {/* Pinned to the bottom: call to action + office info */}
-      <Box sx={{ mt: 'auto', p: 2.5, bgcolor: 'grey.50', borderTop: '1px solid', borderColor: 'divider' }}>
+      <Box sx={{ mt: 'auto', p: 2.5, bgcolor: 'background.default', borderTop: '1px solid', borderColor: 'divider' }}>
         <Button
           variant="contained"
           size="large"

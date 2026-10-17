@@ -17,12 +17,13 @@ function OfficeInfo() {
   return (
     <Box
       sx={{
-        backgroundColor: '#EEE',
+        bgcolor: 'background.paper',
+        border: '1px solid',
+        borderColor: 'divider',
         borderRadius: 3,
         p: 3,
         mb: 4,
         maxWidth: '100%',
-        boxShadow: 1,
       }}
     >
       {/* Logo */}

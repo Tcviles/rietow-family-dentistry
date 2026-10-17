@@ -1,59 +1,26 @@
-import { Box, Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
+import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 import { Link } from 'react-router-dom';
 import { contactInfo } from '../../../data/contactInfo';
 
+// Desktop navbar actions: phone number plus the primary call to action
 function Contact() {
   const { contactPage, phone, phoneLink } = contactInfo;
 
   return (
-    <Box
-    sx={{
-        backgroundColor: '#DDD',
-        borderRadius: '10px',
-        padding: 1.5,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-        width: '100%',        // 👈 fills whatever space parent provides
-        maxWidth: '100%',     // 👈 prevents overflow if applied elsewhere
-      }}
-    >
-      {/* Top row: Contact + Phone side-by-side */}
-      <Box sx={{ display: 'flex', gap: 1 }}>
-        <Button
-          component={Link}
-          to={contactPage}
-          fullWidth
-          variant="contained"
-          sx={{
-            backgroundColor: '#999',
-            color: 'white',
-            textTransform: 'none',
-            fontSize: '12px',
-            borderRadius: '8px',
-            '&:hover': { backgroundColor: '#777' },
-          }}
-        >
-          Contact Us
-        </Button>
-        <Button
-          href={phoneLink}
-          fullWidth
-          variant="contained"
-          sx={{
-            backgroundColor: '#999',
-            color: 'white',
-            textTransform: 'none',
-            fontSize: '12px',
-            borderRadius: '8px',
-            '&:hover': { backgroundColor: '#777' },
-          }}
-        >
-          {phone}
-        </Button>
-      </Box>
-
-    </Box>
+    <Stack direction="row" spacing={1} alignItems="center">
+      <Button
+        href={phoneLink}
+        color="secondary"
+        startIcon={<PhoneInTalkOutlinedIcon />}
+        sx={{ whiteSpace: 'nowrap', fontWeight: 600 }}
+      >
+        {phone}
+      </Button>
+      <Button component={Link} to={contactPage} variant="contained" sx={{ whiteSpace: 'nowrap' }}>
+        Book a Visit
+      </Button>
+    </Stack>
   );
 }
 

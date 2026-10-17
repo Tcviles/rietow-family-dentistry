@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, IconButton, Box, Container } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Contact from './Contact';
 import MobileMenu from './MobileMenu';
 import { NAVBAR_HEIGHT } from './navConstants';
@@ -16,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <Box
@@ -87,7 +88,7 @@ export default function Navbar() {
           {/* Nav Links – desktop only */}
           <Grid
             item
-            md={6}
+            md={5.5}
             sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'center',
@@ -100,12 +101,27 @@ export default function Navbar() {
                 component={Link}
                 to={path}
                 sx={{
+                  position: 'relative',
                   textDecoration: 'none',
-                  color: 'text.secondary',
-                  fontStyle: 'italic',
-                  fontSize: 18,
-                  mr: 3.5,
-                  '&:hover': { color: 'text.primary' },
+                  color: pathname === path ? 'primary.main' : 'text.primary',
+                  fontWeight: 500,
+                  fontSize: 16,
+                  mx: 1.75,
+                  py: 0.5,
+                  transition: 'color 0.2s',
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    bottom: -2,
+                    height: 2,
+                    bgcolor: 'primary.main',
+                    transform: pathname === path ? 'scaleX(1)' : 'scaleX(0)',
+                    transition: 'transform 0.2s',
+                  },
+                  '&:hover': { color: 'primary.main' },
+                  '&:hover::after': { transform: 'scaleX(1)' },
                 }}
               >
                 {label}
@@ -116,7 +132,7 @@ export default function Navbar() {
           {/* Contact – desktop only */}
           <Grid
             item
-            md={3}
+            md={3.5}
             sx={{
               display: { xs: 'none', md: 'flex' },
               justifyContent: 'flex-end',

@@ -8,7 +8,7 @@ function Footer() {
                 flexDirection: { xs: 'column', sm: 'row' }, // 👈 vertical on mobile, horizontal on tablet+
                 justifyContent: 'space-between',
                 alignItems: { xs: 'flex-start', sm: 'center' },
-                backgroundColor: 'black',
+                bgcolor: 'secondary.main',
                 minHeight: '70px',
                 width: '100%',
                 px: 3,
@@ -20,14 +20,14 @@ function Footer() {
 
 
             {/* Left Text */}
-            <Box sx={{ color: '#9c9c9c' }}>
+            <Box>
                 <Typography sx={{ fontSize: '16px', fontWeight: 'bold', color: 'white' }}>
                     Rietow Family Dentistry
                 </Typography>
             </Box>
 
             {/* Right Text */}
-            <Box sx={{ color: '#9c9c9c', textAlign: { xs: 'left', sm: 'right' } }}>
+            <Box sx={{ color: 'rgba(255,255,255,0.65)', textAlign: { xs: 'left', sm: 'right' } }}>
                 <Typography sx={{ fontSize: '13px' }}>
                     © {new Date().getFullYear()} All Rights Reserved
                 </Typography>

@@ -13,7 +13,9 @@ function MeetDrJoe() {
       justifyContent="space-around"
       alignItems="center"
       sx={{
-        backgroundColor: '#EEE',
+        bgcolor: 'background.paper',
+        border: '1px solid',
+        borderColor: 'divider',
         borderRadius: '10px',
         padding: 2,
         textAlign: 'center',
@@ -55,18 +57,7 @@ function MeetDrJoe() {
         <Button
           component={RouterLink}
           to={routes.team}
-          sx={{
-            backgroundColor: '#999',
-            color: 'white',
-            border: '2px solid #DDD',
-            borderRadius: '10px',
-            fontSize: '14px',
-            px: 2,
-            py: 1,
-            '&:hover': {
-              backgroundColor: '#777',
-            },
-          }}
+          variant="outlined"
         >
           Meet the team
         </Button>
