@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { contactInfo } from '../../../data/contactInfo';
 
 function Contact() {
-  const { contactPage, phone, phoneLink, payLink } = contactInfo;
+  const { contactPage, phone, phoneLink } = contactInfo;
 
   return (
     <Box
@@ -53,23 +53,6 @@ function Contact() {
         </Button>
       </Box>
 
-      {/* Bottom: Pay Now full-width */}
-      <Button
-        component={Link}
-        to={payLink}
-        fullWidth
-        variant="contained"
-        sx={{
-          backgroundColor: '#999',
-          color: 'white',
-          textTransform: 'none',
-          fontSize: '12px',
-          borderRadius: '8px',
-          '&:hover': { backgroundColor: '#777' },
-        }}
-      >
-        Pay Now
-      </Button>
     </Box>
   );
 }

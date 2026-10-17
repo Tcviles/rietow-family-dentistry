@@ -9,7 +9,6 @@ import ContactPage from './pages/Contact';
 import TeamPage from './pages/Team';
 import InsurancePage from './pages/Insurance';
 import PatientFormsPage from './pages/PatientForms';
-import PayPage from './pages/Pay';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Route path={routes.team} element={<TeamPage />} />
           <Route path={routes.discount} element={<InsurancePage />} />
           <Route path={routes.forms} element={<PatientFormsPage />} />
-          <Route path={routes.pay} element={<PayPage />} />
         </Routes>
       </Layout>
     </Router>

@@ -9,7 +9,6 @@ export interface ContactInfo {
   email: string;
   addressLine1: string;
   addressLine2: string;
-  payLink: string;
   contactPage: string;
 }
 
@@ -20,6 +19,5 @@ export const contactInfo: ContactInfo = {
   email: 'info@rietowfamilydentistry.com',
   addressLine1: '1259 N State Rd 135 E',
   addressLine2: 'Greenwood, IN 46142',
-  payLink: routes.pay,
   contactPage: routes.contact,
 };
